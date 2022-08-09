@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.filmtvtracker.entities.Film;
@@ -43,6 +44,24 @@ public class FilmController {
 	@PostMapping("/add")
 	public Film create(@RequestBody Film film) {
 		return this.service.addFilm(film);
+	}
+	
+	@GetMapping("/search/{name}")
+	public List<FilmDTO> search(@PathVariable String name){
+		return this.service.searchFilmsByName(name);
+	}
+	
+	@GetMapping("/searchBy")
+	public List<FilmDTO> searchBy(@RequestParam String director, @RequestParam String genre, @RequestParam short year){
+		if(director != null) {
+			return this.service.searchFilmsByDirector(director);
+		}
+		else if(genre != null) {
+			return this.service.searchFilmsByGenre(genre);
+		}
+		else {
+			return this.service.searchFilmsByYear(year);
+		}
 	}
 	
 	@PutMapping("/updateFilm/{id}")
