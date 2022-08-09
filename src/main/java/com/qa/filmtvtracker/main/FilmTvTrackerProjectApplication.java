@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(value = "com.qa.filmtvtracker.config")
 @ComponentScan(value = "com.qa.filmtvtracker.services")
+@ComponentScan(value = "com.qa.filmtvtracker.controllers")
 @EntityScan(value = "com.qa.filmtvtracker.entities")
 @EnableJpaRepositories("com.qa.filmtvtracker.repo")
 public class FilmTvTrackerProjectApplication {
