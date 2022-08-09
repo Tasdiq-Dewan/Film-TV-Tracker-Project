@@ -1,5 +1,6 @@
 package com.qa.filmtvtracker.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,27 @@ public class WatchListController {
 	@PostMapping("/addShow")
 	public WatchList addShow(@RequestBody TVShow show, String status, int progress) {
 		return this.service.addShowEntry(show, status, progress);
+	}
+	
+	@GetMapping("/search/{name}")
+	public List<WatchListDTO> search(@PathVariable String name){
+		return this.service.searchEntryByName(name);
+	}
+	
+	@GetMapping("/searchBy")
+	public List<WatchListDTO> searchBy(@RequestParam String status, @RequestParam String genre, @RequestParam int rating){
+		if(!(status.equals(null) || status.equals(""))) {
+			return this.service.searchEntryByStatus(status);
+		}
+		else if(!(genre.equals(null) || genre.equals(""))) {
+			return this.service.searchEntryByGenre(genre);
+		}
+		else if(rating >= 0) {
+			return this.service.searchEntryByRating(rating);
+		}
+		else {
+			return new ArrayList<WatchListDTO>();
+		}
 	}
 	
 	@PutMapping("/update/{id}")
