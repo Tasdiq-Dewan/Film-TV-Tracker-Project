@@ -49,4 +49,33 @@ public class WatchList {
 	
 	@Column(nullable = false)
 	private int rating;
+	
+	public void setProgress(int i) {
+		if(i >= this.total) {
+			this.progress = total;
+			setStatus("Complete");
+		}
+		else {
+			this.progress = i;
+		}
+	}
+	
+	public void setTotal(int i) {
+		if(this.film != null) {
+			this.total = 1;
+		}
+		else if(this.tvShow != null){
+			this.total = this.tvShow.getEpisodes();
+		}
+	}
+	
+	public void setRating(int i) throws IllegalArgumentException
+	{
+		if(i >= 0 && i <= 10) {
+			this.rating = i;
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+	}
 }
