@@ -1,10 +1,9 @@
 package com.qa.filmtvtracker.entities;
 
-import java.sql.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,13 +24,13 @@ public class WatchList {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = true)
-	@JoinColumn(name = "film_id", referencedColumnName = "film_id")
+	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "film_id", referencedColumnName = "filmId", nullable = true)
 	private Film film;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = true)
-	@JoinColumn(name = "show_id", referencedColumnName = "show_id")
-	private TVShow tvShow;
+	/*@OneToOne(cascade = CascadeType.ALL, optional = true)
+	@JoinColumn(name = "show_id", referencedColumnName = "show_id")*/
+	//private TVShow tvShow;
 	
 	@Column(nullable = false)
 	private String name;
