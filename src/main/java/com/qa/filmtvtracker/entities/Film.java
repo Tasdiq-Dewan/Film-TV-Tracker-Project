@@ -1,5 +1,7 @@
 package com.qa.filmtvtracker.entities;
 
+
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -7,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,6 @@ public class Film {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@OneToOne
 	private Long filmId;
 	
 	@Column(nullable = false)
@@ -31,7 +31,7 @@ public class Film {
 	private String director;
 	
 	@Column(nullable = false)
-	private Date year;
+	private Date yearRelease;
 	
 	@Column(nullable = false)
 	private String genre;

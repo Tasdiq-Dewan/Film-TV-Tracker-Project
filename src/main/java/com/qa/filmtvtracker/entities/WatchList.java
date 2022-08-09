@@ -27,10 +27,10 @@ public class WatchList {
 	@OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "film_id", referencedColumnName = "filmId", nullable = true)
 	private Film film;
-	
-	/*@OneToOne(cascade = CascadeType.ALL, optional = true)
-	@JoinColumn(name = "show_id", referencedColumnName = "show_id")*/
-	//private TVShow tvShow;
+//	
+	@OneToOne(cascade = CascadeType.ALL, optional = true)
+	@JoinColumn(name = "show_id", referencedColumnName = "showId", nullable = true)
+	private TVShow tvShow;
 	
 	@Column(nullable = false)
 	private String name;
