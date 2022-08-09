@@ -50,6 +50,24 @@ public class WatchList {
 	@Column(nullable = false)
 	private int rating;
 	
+	public WatchList(Film film, TVShow show, String name, String status, int progress, int rating) {
+		this.film = film;
+		this.tvShow = show;
+		this.name = name;
+		this.status = status;
+		if(film != null) {
+			this.total = 1;
+		}
+		else if(show != null) {
+			this.total = show.getEpisodes();
+		}
+		else {
+			total = 0;
+		}
+		this.setProgress(progress);
+		this.setRating(rating);
+	}
+	
 	public void setProgress(int i) {
 		if(i >= this.total) {
 			this.progress = total;
