@@ -1,6 +1,5 @@
 package com.qa.filmtvtracker.entities;
 
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,10 +25,10 @@ public class TVShow {
 	private String showName;
 	
 	@Column(nullable = false)
-	private Date yearBegan;
+	private short yearBegan;
 	
 	@Column
-	private Date yearEnded;
+	private short yearEnded;
 	
 	@Column(nullable = false)
 	private String genre;

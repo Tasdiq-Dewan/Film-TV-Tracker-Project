@@ -2,8 +2,6 @@ package com.qa.filmtvtracker.entities;
 
 
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +29,7 @@ public class Film {
 	private String director;
 	
 	@Column(nullable = false)
-	private Date yearRelease;
+	private short yearRelease;
 	
 	@Column(nullable = false)
 	private String genre;
