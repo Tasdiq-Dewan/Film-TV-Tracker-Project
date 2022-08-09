@@ -1,6 +1,7 @@
 package com.qa.filmtvtracker.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -43,4 +44,39 @@ public class FilmService {
 		return mapToDTO(result);
 	}
 	
+	public List<FilmDTO> searchFilmsByName(String name){
+		return this.repo.findFilmByFilmName(name).stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+	
+	public List<FilmDTO> searchFilmsByYear(short year){
+		return this.repo.findFilmByYearRelease(year).stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+	
+	public List<FilmDTO> searchFilmsByGenre(String genre){
+		return this.repo.findFilmByGenre(genre).stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+	
+	public List<FilmDTO> searchFilmsByDirector(String director){
+		return this.repo.findFilmByDirector(director).stream().map(this::mapToDTO).collect(Collectors.toList());
+	}
+	
+	public Film updateFilm(Long id, Film film) {
+		Film toSave = this.repo.findById(id).orElseThrow(FilmNotFoundException::new);
+		toSave.setFilmName(film.getFilmName());
+		toSave.setDirector(film.getDirector());
+		toSave.setGenre(film.getGenre());
+		toSave.setYearRelease(film.getYearRelease());
+		toSave.setRuntime(film.getRuntime());
+		return this.repo.save(toSave);
+	}
+	
+	public boolean removeFilm(Long id) throws FilmNotFoundException {
+		if(!this.repo.existsById(id)){
+			throw new FilmNotFoundException();
+		}
+		else {
+			this.repo.deleteById(id);
+			return !this.repo.existsById(id);
+		}
+	}
 }
