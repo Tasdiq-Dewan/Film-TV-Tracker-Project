@@ -1,5 +1,6 @@
 package com.qa.filmtvtracker.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +54,17 @@ public class FilmController {
 	
 	@GetMapping("/searchBy")
 	public List<FilmDTO> searchBy(@RequestParam String director, @RequestParam String genre, @RequestParam short year){
-		if(director != null) {
+		if(!(director.equals("null") || director.equals(""))) {
 			return this.service.searchFilmsByDirector(director);
 		}
-		else if(genre != null) {
+		else if(!(genre.equals("null") || genre.equals(""))) {
 			return this.service.searchFilmsByGenre(genre);
 		}
-		else {
+		else if(year > 0){
 			return this.service.searchFilmsByYear(year);
+		}
+		else {
+			return new ArrayList<FilmDTO>();
 		}
 	}
 	
