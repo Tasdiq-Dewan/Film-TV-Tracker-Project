@@ -25,7 +25,7 @@ public class FilmDTO {
 	
 	@Getter
 	@Setter
-	private Date yearRelease;
+	private short yearRelease;
 	
 	@Getter
 	@Setter
