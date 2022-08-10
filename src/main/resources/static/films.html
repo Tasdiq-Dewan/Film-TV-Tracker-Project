@@ -30,24 +30,59 @@
     </header>
     <main>
         <h2>Films</h2>
-        <button type="button" onclick="openForm()">
+        <button type="button" onclick="openAddForm()">
             Add Film
         </button>
         <div id="addFilmForm" class="form-popup">
-            <form action=" " class="form-container">
+            <form  class="form-container">
                 <h2>Add Film</h2>
                 <label for="filmName"><b>Film Name</b></label>
-                <input type="text" placeholder="Enter Film Name" name="filmName" required>
+                <input type="text" id="name" placeholder="Enter Film Name" name="filmName" required>
                 <label for="director"><b>Director</b></label>
-                <input type="text" placeholder="Enter Director" name="director" required>
+                <input type="text" id="director" placeholder="Enter Director" name="director" required>
                 <label for="year"><b>Year of Release</b></label>
-                <input type="text" placeholder="Enter Year of Release" name="year" required>
+                <input type="text" id="year" placeholder="Enter Year of Release" name="year" required>
                 <label for="genre"><b>Genre</b></label>
-                <input type="text" placeholder="Enter Genre" name="genre" required>
+                <input type="text" id="genre" placeholder="Enter Genre" name="genre" required>
                 <label for="runtime"><b>Runtime</b></label>
-                <input type="text" placeholder="Enter Runtime" name="runtime" required>
-                <button type="submit" class="btn" onclick="create()">Add Film</button>
-                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                <input type="text" id="runtime" placeholder="Enter Runtime" name="runtime" required>
+                <button type="button" class="btn" onclick="create()">Add Film</button>
+                <button type="button" class="btn cancel" onclick="closeAddForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openUpdateForm()">
+            Update Film
+        </button>
+        <div id="updateFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Update Film</h2>
+                <label for="upfilmId"><b>Film ID</b></label>
+                <input type="text" id="upfilmId" placeholder="Enter Film ID" name="upfilmId" required>
+                <label for="filmName"><b>Film Name</b></label>
+                <input type="text" id="upname" placeholder="Enter Film Name" name="upfilmName" required>
+                <label for="updirector"><b>Director</b></label>
+                <input type="text" id="updirector" placeholder="Enter Director" name="updirector" required>
+                <label for="upyear"><b>Year of Release</b></label>
+                <input type="text" id="upyear" placeholder="Enter Year of Release" name="upyear" required>
+                <label for="upgenre"><b>Genre</b></label>
+                <input type="text" id="upgenre" placeholder="Enter Genre" name="upgenre" required>
+                <label for="upruntime"><b>Runtime</b></label>
+                <input type="text" id="upruntime" placeholder="Enter Runtime" name="upruntime" required>
+                <button type="button" class="btn" onclick="update()">Update Film</button>
+                <button type="button" class="btn cancel" onclick="closeUpdateForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openDeleteForm()">
+            Delete Film
+        </button>
+        <div id="deleteFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Delete Film</h2>
+                <label for="delfilmId"><b>Film ID</b></label>
+                <input type="text" id="delfilmId" placeholder="Enter Film ID" name="delfilmId" required>
+                
+                <button type="button" class="btn" onclick="deleteFilm()">Delete Film</button>
+                <button type="button" class="btn cancel" onclick="closeDeleteForm()">Close</button>
             </form>
         </div>
         <table id="film-table" class="table table-dark table-striped table-hover">

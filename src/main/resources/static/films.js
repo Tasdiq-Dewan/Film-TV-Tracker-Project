@@ -75,13 +75,124 @@ function populateRow(film){
 }
 
 function create(){
+    let name = document.getElementById("name").value;
+    let director = document.getElementById("director").value;
+    let year = document.getElementById("year").value;
+    let genre = document.getElementById("genre").value;
+    let runtime = document.getElementById("runtime").value;
+    console.log(JSON.stringify({
+        "filmName": name,
+        "director": director,
+        "yearRelease": year,
+        "genre": genre,
+        "runtime": runtime
+    }))
+    fetch("/api/films/add?", {
+            method: "POST",
+            body: JSON.stringify({
+                "filmName": name,
+                "director": director,
+                "yearRelease": year,
+                "genre": genre,
+                "runtime": runtime
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
 
 }
 
-function openForm() {
+function openAddForm() {
     document.getElementById("addFilmForm").style.display = "block";
-  }
+}
   
-  function closeForm() {
+function closeAddForm() {
     document.getElementById("addFilmForm").style.display = "none";
-  }
+}
+
+function update(){
+    let id = document.getElementById("upfilmId").value;
+    let name = document.getElementById("upname").value;
+    let director = document.getElementById("updirector").value;
+    let year = document.getElementById("upyear").value;
+    let genre = document.getElementById("upgenre").value;
+    let runtime = document.getElementById("upruntime").value;
+    console.log(JSON.stringify({
+        "filmName": name,
+        "director": director,
+        "yearRelease": year,
+        "genre": genre,
+        "runtime": runtime
+    }))
+    fetch(`/api/films/updateFilm/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                "filmName": name,
+                "director": director,
+                "yearRelease": year,
+                "genre": genre,
+                "runtime": runtime
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openUpdateForm() {
+    document.getElementById("updateFilmForm").style.display = "block";
+}
+  
+function closeUpdateForm() {
+    document.getElementById("updateFilmForm").style.display = "none";
+}
+
+function deleteFilm(){
+    let id = document.getElementById("delfilmId").value;
+    
+    fetch(`/api/films/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openDeleteForm() {
+    document.getElementById("deleteFilmForm").style.display = "block";
+}
+  
+function closeDeleteForm() {
+    document.getElementById("deleteFilmForm").style.display = "none";
+}
