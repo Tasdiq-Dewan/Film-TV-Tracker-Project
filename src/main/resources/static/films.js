@@ -1,10 +1,12 @@
+
+//function that makes getAll request, is called upon loading films.html
 function showAllFilms(){
     fetch('/api/films/getAll')
     .then(res => {
         res.json().then(body => {
                 data = JSON.stringify(body);
                 console.log(data);
-                displayAllInBody(body);
+                displayAllInBody(body); //display body of json response in the table of films
            });
         })
     .catch(err =>{
@@ -13,29 +15,12 @@ function showAllFilms(){
     })
 }
 
-function showFilm(id){
-    fetch(`/api/films/getFilm/${id}`)
-    .then(res => {
-        res.json().then(body => {
-                return body;
-           });
-        })
-    .catch(err =>{
-        console.log(err);
-        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
-    })
-}
+
 
 function displayAllInBody(res){
-    // let old_tbody = document.getElementById("film-table-body")
-    // let new_tbody = document.createElement("tbody");
-    // old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
-    // new_tbody.setAttribute("id", "filmt-table-body");
-    // res.forEach(film => {
-    //     new_tbody.appendChild(populateRow(film));
-    // });
     let tbody = document.getElementById("film-table-body")
     tbody.innerHTML = "";
+    //loops through each object in the json response and makes a table row out of it
     res.forEach(film => {
         tbody.appendChild(populateRow(film));
     });
@@ -50,6 +35,7 @@ function displayBody(body){
     populateRow(film);
 }
 
+//populates a row in the film table with attributes of a film json object
 function populateRow(film){
     let table = document.getElementById("film-table-body");
     let row = document.createElement("tr");
@@ -75,6 +61,7 @@ function populateRow(film){
     return row;
 }
 
+//called when clicking the add film button after providing input fields
 function create(){
     let name = document.getElementById("name").value;
     let director = document.getElementById("director").value;
@@ -246,4 +233,52 @@ function openFilterForm() {
   
 function closeFilterForm() {
     document.getElementById("filterFilmForm").style.display = "none";
+}
+
+async function getFilm(id){
+    const res = await fetch(`/api/films/getFilm/${id}`);
+
+    return await res.json();
+    
+}
+
+async function addFilmToList(){
+    let id = document.getElementById("listfilmId").value;
+    let film = await getFilm(id);
+    console.log(film);
+    film.filmId=null;
+    let status = document.getElementById("listfilmstatus").value;
+    let progress;
+    if(status === "Complete"){
+        progress = 1;
+    }
+    else{
+        progress = 0;
+    }
+    fetch(`/api/list/addFilm?status=${status}&progress=${progress}`,
+        {
+            method: "POST",
+            body: JSON.stringify(film),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    ).then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openAddListForm() {
+    document.getElementById("addListForm").style.display = "block";
+}
+  
+function closeAddListForm() {
+    document.getElementById("addListForm").style.display = "none";
 }

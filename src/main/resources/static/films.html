@@ -115,6 +115,24 @@
                 <button type="button" class="btn cancel" onclick="closeFilterForm()">Close</button>
             </form>
         </div>
+        <button type="button" onclick="openAddListForm()">
+            Add Film to My List
+        </button>
+        <div id="addListForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Add Film to List</h2>
+                <label for="listfilmId"><b>Film ID</b></label>
+                <input type="text" id="listfilmId" placeholder="Enter Film ID" required>
+                <label for="listfilmstatus"><b>Watch Status</b></label>
+                <select name="listfilmstatus" id="listfilmstatus" class="form-dropdown">
+                    <option value="Complete">Complete</option>
+                    <option value="Watching">Watching</option>
+                    <option value="Planning">Planning</option>
+                </select>
+                <button type="button" class="btn" onclick="addFilmToList()">Add Film to My List</button>
+                <button type="button" class="btn cancel" onclick="closeAddListForm()">Close</button>
+            </form>
+        </div>
         <table id="film-table" class="table table-dark table-striped table-hover">
             <thead id="film-table-head">
                 <tr>
