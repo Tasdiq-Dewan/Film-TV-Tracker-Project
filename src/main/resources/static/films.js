@@ -2,6 +2,19 @@ function showAllFilms(){
     fetch('/api/films/getAll')
     .then(res => {
         res.json().then(body => {
+                displayAllInBody(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function showFilm(id){
+    fetch(`/api/films/getFilm/${id}`)
+    .then(res => {
+        res.json().then(body => {
                 displayBody(body);
            });
         })
@@ -11,15 +24,24 @@ function showAllFilms(){
     })
 }
 
-function displayBody(body){
+function displayAllInBody(body){
+    let old_tbody = document.getElementById("film-table-body")
+    let new_tbody = document.createElement("tbody");
+    new_tbody;
+    old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
+    //new_tbody.id = "film-table-body";
+    body.forEach(film => {
+        populateRow(film);
+    });
+}
+
+function disaplyBody(body){
     let old_tbody = document.getElementById("film-table-body")
     let new_tbody = document.createElement("tbody");
     new_tbody;
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
     new_tbody.id = "film-table-body";
-    body.forEach(film => {
-        populateRow(film);
-    });
+    populateRow(film);
 }
 
 function populateRow(film){
@@ -48,3 +70,15 @@ function populateRow(film){
     runtime.innerHTML = `${film.runtime}`;
     row.appendChild(runtime);
 }
+
+function create(){
+    
+}
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
