@@ -2,6 +2,8 @@ function showAllFilms(){
     fetch('/api/films/getAll')
     .then(res => {
         res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
                 displayAllInBody(body);
            });
         })
@@ -24,14 +26,14 @@ function showFilm(id){
     })
 }
 
-function displayAllInBody(body){
+function displayAllInBody(res){
     let old_tbody = document.getElementById("film-table-body")
     let new_tbody = document.createElement("tbody");
     new_tbody;
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
     new_tbody.setAttribute("id", "filmt-table-body");
-    body.forEach(film => {
-        populateRow(JSON.stringify(film));
+    res.forEach(film => {
+        populateRow(film);
     });
 }
 

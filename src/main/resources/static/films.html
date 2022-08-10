@@ -42,6 +42,12 @@
                 <input type="text" placeholder="Enter Director" name="director" required>
                 <label for="year"><b>Year of Release</b></label>
                 <input type="text" placeholder="Enter Year of Release" name="year" required>
+                <label for="genre"><b>Genre</b></label>
+                <input type="text" placeholder="Enter Genre" name="genre" required>
+                <label for="runtime"><b>Runtime</b></label>
+                <input type="text" placeholder="Enter Runtime" name="runtime" required>
+                <button type="submit" class="btn" onclick="create()">Add Film</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
         </div>
         <table id="film-table" class="table table-dark table-striped table-hover">
