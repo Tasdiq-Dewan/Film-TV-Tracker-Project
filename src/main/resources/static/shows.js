@@ -108,3 +108,84 @@ function openAddForm() {
 function closeAddForm() {
     document.getElementById("addShowForm").style.display = "none";
 }
+
+function updateShow(){
+    let id = document.getElementById("upshowId").value;
+    let name = document.getElementById("upname").value;
+    let yearBegan = document.getElementById("upyearBegan").value;
+    let yearEnded = document.getElementById("upyearEnded").value;
+    let genre = document.getElementById("upgenre").value;
+    let episodes = document.getElementById("upepisodes").value;
+    let seasons = document.getElementById("upseasons").value;
+    console.log(JSON.stringify({
+        "showId": id,
+        "showName": name,
+        "yearBegan": yearBegan,
+        "yearEnded": yearEnded,
+        "genre": genre,
+        "episodes": episodes,
+        "seasons": seasons
+    }))
+    fetch(`/api/tvshows/updateShow/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                "showName": name,
+                "yearBegan": yearBegan,
+                "yearEnded": yearEnded,
+                "genre": genre,
+                "episodes": episodes,
+                "seasons": seasons
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+
+}
+
+function openUpdateForm(){
+    document.getElementById("updateShowForm").style.display = "block";
+}
+
+function closeUpdateForm(){
+    document.getElementById("updateShowForm").style.display = "none";
+}
+
+function deleteShow(){
+    let id = document.getElementById("delshowId").value;
+    
+    fetch(`/api/tvshows/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openDeleteForm(){
+    document.getElementById("deleteShowForm").style.display = "block";
+}
+
+function closeDeleteForm(){
+    document.getElementById("deleteShowForm").style.display = "none";
+}
