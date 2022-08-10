@@ -1,0 +1,1 @@
+INSERT INTO film (film_name, director, year_release, genre, runtime) VALUES ('The Lord of the Rings: The Fellowship of the Ring', 'Peter Jackson', 2001, 'Fantasy', 228);
