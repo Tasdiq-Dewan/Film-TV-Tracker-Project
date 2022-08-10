@@ -20,11 +20,11 @@ public class TVShowDTO {
 	
 	@Getter
 	@Setter
-	private Date yearBegan;
+	private short yearBegan;
 	
 	@Getter
 	@Setter
-	private Date yearEnded;
+	private short yearEnded;
 	
 	@Getter
 	@Setter
