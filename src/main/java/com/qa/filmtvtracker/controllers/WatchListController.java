@@ -76,7 +76,7 @@ public class WatchListController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public WatchList update(@RequestParam WatchList entry, @PathVariable Long id) {
+	public WatchList update(@RequestBody WatchList entry, @PathVariable Long id) {
 		return this.service.updateEntry(id, entry);
 	}
 	
