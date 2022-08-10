@@ -11,7 +11,7 @@
 </head>
 <body onload="showAllTVShows()">
     <header class="d-flex justify-content-center">
-        <h1>Tasdiq's Film & TV Show Tracker</h1>
+        <a href="index.html"><h1>Tasdiq's Film & TV Show Tracker</h1></a>
     </header>
     <header class="d-flex justify-content-center">
         <nav class="navbar">
@@ -29,6 +29,29 @@
         </nav>
     </header>
     <main>
+        <h2>TV Shows</h2>
+        <button type="button" onclick="openAddForm()">
+            Add TV Show
+        </button>
+        <div id="addShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Add Film</h2>
+                <label for="showName"><b>TV Show Name</b></label>
+                <input type="text" id="name" placeholder="Enter TV Show Name" name="showName" required>
+                <label for="yearBegan"><b>Year Began</b></label>
+                <input type="text" id="yearBegan" placeholder="Enter Year Began" name="yearBegan" required>
+                <label for="yearEnded"><b>Year Ended</b></label>
+                <input type="text" id="yearEnded" placeholder="Enter Year Ended" name="yearEnded">
+                <label for="genre"><b>Genre</b></label>
+                <input type="text" id="genre" placeholder="Enter Genre" name="genre" required>
+                <label for="episodes"><b>Episodes</b></label>
+                <input type="text" id="episodes" placeholder="Enter Episodes" name="episodes" required>
+                <label for="seasons"><b>Seasons</b></label>
+                <input type="text" id="seasons" placeholder="Enter Seasons" name="seasons" required>
+                <button type="button" class="btn" onclick="create()">Add Film</button>
+                <button type="button" class="btn cancel" onclick="closeAddForm()">Close</button>
+            </form>
+        </div>
         <table id="show-table" class="table table-dark table-striped table-hover">
             <thead id="show-table-head">
                 <tr>

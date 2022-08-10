@@ -57,3 +57,54 @@ function populateRow(show){
 
     return row;
 }
+
+//called when clicking the add tv show button after providing input fields
+function create(){
+    let name = document.getElementById("name").value;
+    let yearBegan = document.getElementById("yearBegan").value;
+    let yearEnded = document.getElementById("yearEnded").value;
+    let genre = document.getElementById("genre").value;
+    let episodes = document.getElementById("episodes").value;
+    let seasons = document.getElementById("seasons").value;
+    console.log(JSON.stringify({
+        "showName": name,
+        "yearBegan": yearBegan,
+        "yearEnded": yearEnded,
+        "genre": genre,
+        "episodes": episodes,
+        "seasons": seasons
+    }))
+    fetch("/api/tvshows/add", {
+            method: "POST",
+            body: JSON.stringify({
+                "showName": name,
+                "yearBegan": yearBegan,
+                "yearEnded": yearEnded,
+                "genre": genre,
+                "episodes": episodes,
+                "seasons": seasons
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+
+}
+
+function openAddForm() {
+    document.getElementById("addShowForm").style.display = "block";
+}
+  
+function closeAddForm() {
+    document.getElementById("addShowForm").style.display = "none";
+}

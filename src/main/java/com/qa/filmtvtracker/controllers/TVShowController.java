@@ -44,7 +44,7 @@ public class TVShowController {
 	
 	@PostMapping("/add")
 	public TVShow create(@RequestBody TVShow show) {
-		return this.service.addShow(null);
+		return this.service.addShow(show);
 	}
 	
 	@GetMapping("/search/{name}")

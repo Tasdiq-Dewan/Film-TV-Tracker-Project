@@ -11,7 +11,7 @@
 </head>
 <body onload="showAllFilms()">
     <header class="d-flex justify-content-center">
-        <h1>Tasdiq's Film & TV Show Tracker</h1>
+        <a href="index.html"><h1>Tasdiq's Film & TV Show Tracker</h1></a>
     </header>
     <header class="d-flex justify-content-center">
         <nav class="navbar">
@@ -46,7 +46,7 @@
                 <input type="text" id="genre" placeholder="Enter Genre" name="genre" required>
                 <label for="runtime"><b>Runtime</b></label>
                 <input type="text" id="runtime" placeholder="Enter Runtime" name="runtime" required>
-                <button type="button" class="btn" onclick="create()">Add Film</button>
+                <button type="submit" class="btn" onclick="create()">Add Film</button>
                 <button type="button" class="btn cancel" onclick="closeAddForm()">Close</button>
             </form>
         </div>
@@ -68,7 +68,7 @@
                 <input type="text" id="upgenre" placeholder="Enter Genre" name="upgenre" required>
                 <label for="upruntime"><b>Runtime</b></label>
                 <input type="text" id="upruntime" placeholder="Enter Runtime" name="upruntime" required>
-                <button type="button" class="btn" onclick="update()">Update Film</button>
+                <button type="submit" class="btn" onclick="update()">Update Film</button>
                 <button type="button" class="btn cancel" onclick="closeUpdateForm()">Close</button>
             </form>
         </div>
@@ -81,7 +81,7 @@
                 <label for="delfilmId"><b>Film ID</b></label>
                 <input type="text" id="delfilmId" placeholder="Enter Film ID" name="delfilmId" required>
                 
-                <button type="button" class="btn" onclick="deleteFilm()">Delete Film</button>
+                <button type="submit" class="btn" onclick="deleteFilm()">Delete Film</button>
                 <button type="button" class="btn cancel" onclick="closeDeleteForm()">Close</button>
             </form>
         </div>

@@ -27,7 +27,7 @@ public class TVShow {
 	@Column(nullable = false)
 	private short yearBegan;
 	
-	@Column
+	@Column(nullable = true)
 	private short yearEnded;
 	
 	@Column(nullable = false)
