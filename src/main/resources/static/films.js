@@ -17,7 +17,7 @@ function showFilm(id){
     fetch(`/api/films/getFilm/${id}`)
     .then(res => {
         res.json().then(body => {
-                displayBody(body);
+                return body;
            });
         })
     .catch(err =>{
@@ -27,17 +27,21 @@ function showFilm(id){
 }
 
 function displayAllInBody(res){
-    let old_tbody = document.getElementById("film-table-body")
-    let new_tbody = document.createElement("tbody");
-    new_tbody;
-    old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
-    new_tbody.setAttribute("id", "filmt-table-body");
+    // let old_tbody = document.getElementById("film-table-body")
+    // let new_tbody = document.createElement("tbody");
+    // old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
+    // new_tbody.setAttribute("id", "filmt-table-body");
+    // res.forEach(film => {
+    //     new_tbody.appendChild(populateRow(film));
+    // });
+    let tbody = document.getElementById("film-table-body")
+    tbody.innerHTML = "";
     res.forEach(film => {
-        new_tbody.appendChild(populateRow(film));
+        tbody.appendChild(populateRow(film));
     });
 }
 
-function disaplyBody(body){
+function displayBody(body){
     let old_tbody = document.getElementById("film-table-body")
     let new_tbody = document.createElement("tbody");
     new_tbody;
@@ -50,12 +54,9 @@ function populateRow(film){
     let table = document.getElementById("film-table-body");
     let row = document.createElement("tr");
     let id = document.createElement("th");
-    // let gap = document.createElement("gap");
-    // gap.innerHTML = " ";
     id.scope = "row";
     id.innerHTML = `${film.filmId}`;
     row.appendChild(id);
-    //row.appendChild(gap);
     let name = document.createElement("td");
     name.innerHTML = `${film.filmName}`;
     row.appendChild(name);
@@ -195,4 +196,28 @@ function openDeleteForm() {
   
 function closeDeleteForm() {
     document.getElementById("deleteFilmForm").style.display = "none";
+}
+
+function searchFilm(){
+    let name = document.getElementById("searchname").value;
+    fetch(`/api/films/search/${name}`, {method: "GET"})
+    .then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+                displayAllInBody(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openSearchForm() {
+    document.getElementById("searchFilmForm").style.display = "block";
+}
+  
+function closeSearchForm() {
+    document.getElementById("searchFilmForm").style.display = "none";
 }

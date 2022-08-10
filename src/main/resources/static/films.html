@@ -85,6 +85,19 @@
                 <button type="button" class="btn cancel" onclick="closeDeleteForm()">Close</button>
             </form>
         </div>
+        <button type="button" onclick="openSearchForm()">
+            SearchFilm
+        </button>
+        <div id="searchFilmForm" class="form-popup">
+            <form class="form-container">
+                <h2>Search Film</h2>
+                <label for="searchname"><b>Film ID</b></label>
+                <input type="text" id="searchname" placeholder="Enter a Film Name" name="searchname" required>
+                
+                <button type="button" class="btn" onclick="searchFilm()">Search for Film</button>
+                <button type="button" class="btn cancel" onclick="closeSearchForm()">Close</button>
+            </form>
+        </div>
         <table id="film-table" class="table table-dark table-striped table-hover">
             <thead id="film-table-head">
                 <tr>
