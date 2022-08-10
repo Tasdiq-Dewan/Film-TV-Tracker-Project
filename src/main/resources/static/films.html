@@ -86,7 +86,7 @@
             </form>
         </div>
         <button type="button" onclick="openSearchForm()">
-            SearchFilm
+            Search Film
         </button>
         <div id="searchFilmForm" class="form-popup">
             <form class="form-container">
@@ -96,6 +96,23 @@
                 
                 <button type="button" class="btn" onclick="searchFilm()">Search for Film</button>
                 <button type="button" class="btn cancel" onclick="closeSearchForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openFilterForm()">
+            Filter Films
+        </button>
+        <div id="filterFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Filter Film</h2>
+                <label for="filterdirector"><b>Filter by Director</b></label>
+                <input type="text" id="filterdirector" placeholder="Enter Director" name="filterdirector" required>
+                <label for="filtergenre"><b>Filter by Genre</b></label>
+                <input type="text" id="filtergenre" placeholder="Enter Genre" name="filtergenre" required>
+                <label for="filteryear"><b>Filter by Year of Release</b></label>
+                <input type="text" id="filteryear" placeholder="Enter Year of Release" name="filteryear" required>
+                
+                <button type="button" class="btn" onclick="filterFilm()">Filter Films</button>
+                <button type="button" class="btn cancel" onclick="closeFilterForm()">Close</button>
             </form>
         </div>
         <table id="film-table" class="table table-dark table-striped table-hover">

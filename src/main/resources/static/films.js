@@ -221,3 +221,29 @@ function openSearchForm() {
 function closeSearchForm() {
     document.getElementById("searchFilmForm").style.display = "none";
 }
+
+function filterFilm(){
+    let director = document.getElementById("filterdirector").value;
+    let year = document.getElementById("filteryear").value;
+    let genre = document.getElementById("filtergenre").value
+    fetch(`/api/films/searchBy?director=${director}&genre=${genre}&year=${year}`, {method: "GET"})
+    .then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+                displayAllInBody(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openFilterForm() {
+    document.getElementById("filterFilmForm").style.display = "block";
+}
+  
+function closeFilterForm() {
+    document.getElementById("filterFilmForm").style.display = "none";
+}
