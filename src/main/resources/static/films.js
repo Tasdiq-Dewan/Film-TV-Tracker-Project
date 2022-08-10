@@ -29,9 +29,9 @@ function displayAllInBody(body){
     let new_tbody = document.createElement("tbody");
     new_tbody;
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
-    //new_tbody.id = "film-table-body";
+    new_tbody.setAttribute("id", "filmt-table-body");
     body.forEach(film => {
-        populateRow(film);
+        populateRow(JSON.stringify(film));
     });
 }
 
@@ -48,11 +48,11 @@ function populateRow(film){
     let table = document.getElementById("film-table-body");
     let row = document.createElement("tr");
     let id = document.createElement("th");
-    let gap = document.createElement("gap");
-    gap.innerHTML = " ";
+    // let gap = document.createElement("gap");
+    // gap.innerHTML = " ";
     id.scope = "row";
     id.innerHTML = `${film.filmId}`;
-    table.appendChild(id);
+    row.appendChild(id);
     //row.appendChild(gap);
     let name = document.createElement("td");
     name.innerHTML = `${film.filmName}`;
@@ -72,13 +72,13 @@ function populateRow(film){
 }
 
 function create(){
-    
+
 }
 
 function openForm() {
-    document.getElementById("myForm").style.display = "block";
+    document.getElementById("addFilmForm").style.display = "block";
   }
   
   function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+    document.getElementById("addFilmForm").style.display = "none";
   }
