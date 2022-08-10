@@ -33,7 +33,7 @@ function displayAllInBody(res){
     old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
     new_tbody.setAttribute("id", "filmt-table-body");
     res.forEach(film => {
-        populateRow(film);
+        new_tbody.appendChild(populateRow(film));
     });
 }
 
@@ -71,6 +71,7 @@ function populateRow(film){
     let runtime = document.createElement("td");
     runtime.innerHTML = `${film.runtime}`;
     row.appendChild(runtime);
+    return row;
 }
 
 function create(){
