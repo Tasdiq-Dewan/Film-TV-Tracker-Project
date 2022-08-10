@@ -115,8 +115,28 @@
                 <input type="text" id="filtergenre" name="filtergenre" placeholder="Enter Genre">
                 <label for="filteryear"><b>Year Began</b></label>
                 <input type="text" name="filteryear" id="filteryear" placeholder="Enter Year Began" value="0">
-                <button type="button" class="btn" onclick="filterShows()">Search TV Show</button>
+                <button type="button" class="btn" onclick="filterShows()">Filter TV Shows</button>
                 <button type="button" class="btn cancel" onclick="closeFilterForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openAddListForm()">
+            Add Show to My List
+        </button>
+        <div id="addListForm" class="form-popup">
+            <form class="form-container">
+                <h2>Add Show to List</h2>
+                <label for="addListId"><b>TV Show ID</b></label>
+                <input type="text" id="addListId" name="addListId" placeholder="Enter Show ID" required>
+                <label for="status"><b>Status</b></label>
+                <select name="status" id="status" class="form-dropdown" required>
+                    <option value="Complete">Complete</option>
+                    <option value="Watching">Watching</option>
+                    <option value="Planning">Planning</option>
+                </select>
+                <label for="progress"><b>Progress</b></label>
+                <input type="text" name="progress" id="progress" placeholder="Enter Progress" value="0" required>
+                <button type="button" class="btn" onclick="addShowToList()">Add TV Show to List</button>
+                <button type="button" class="btn cancel" onclick="closeAddListForm()">Close</button>
             </form>
         </div>
         <table id="show-table" class="table table-dark table-striped table-hover">

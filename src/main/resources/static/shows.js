@@ -244,3 +244,49 @@ function openFilterForm(){
 function closeFilterForm(){
     document.getElementById("filterShowForm").style.display = "none";
 }
+
+async function getShow(id){
+    const res = await fetch(`/api/tvshows/getShow/${id}`);
+
+    return await res.json();
+    
+}
+
+async function addShowToList(){
+    let id = document.getElementById("addListId").value;
+    let show = await getShow(id);
+    console.log(show);
+    show.showId = null;
+    let status = document.getElementById("status").value;
+    let progress = document.getElementById("progress").value;
+    if(status === "Complete"){
+        progress = show.episodes;
+    }
+    fetch(`/api/list/addShow?status=${status}&progress=${progress}`,
+        {
+            method: "POST",
+            body: JSON.stringify(show),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    ).then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+
+}
+
+function openAddListForm(){
+    document.getElementById("addListForm").style.display = "block";
+}
+
+function closeAddListForm(){
+    document.getElementById("addListShowForm").style.display = "none";
+}
