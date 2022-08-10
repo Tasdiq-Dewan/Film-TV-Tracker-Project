@@ -89,6 +89,18 @@
                 <button type="button" class="btn cancel" onclick="closeDeleteForm()">Close</button>
             </form>
         </div>
+        <button type="button" onclick="openSearchForm()">
+            Search TV Show
+        </button>
+        <div id="searchShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2> Search TV Show</h2>
+                <label for="searchname"><b>TV Show Name</b></label>
+                <input type="text" id="searchname" placeholder="Enter TV Show Name" name="searchname" required>
+                <button type="button" class="btn" onclick="searchShow()">Search TV Show</button>
+                <button type="button" class="btn cancel" onclick="closeSearchForm()">Close</button>
+            </form>
+        </div>
         <table id="show-table" class="table table-dark table-striped table-hover">
             <thead id="show-table-head">
                 <tr>

@@ -189,3 +189,31 @@ function openDeleteForm(){
 function closeDeleteForm(){
     document.getElementById("deleteShowForm").style.display = "none";
 }
+
+function searchShow(){
+    let name = document.getElementById("searchname").value;
+    fetch(`/api/tvshows/search/${name}`,
+        {
+            method: "GET",
+        }
+    )
+    .then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+                displayAllInBody(body); //display body of json response in the table of tv shows
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openSearchForm(){
+    document.getElementById("searchShowForm").style.display = "block";
+}
+
+function closeSearchForm(){
+    document.getElementById("searchShowForm").style.display = "none";
+}
