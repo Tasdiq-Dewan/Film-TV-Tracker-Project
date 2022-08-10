@@ -217,3 +217,30 @@ function openSearchForm(){
 function closeSearchForm(){
     document.getElementById("searchShowForm").style.display = "none";
 }
+
+function filterShows(){
+    let episodes = document.getElementById("filterepisodes").value;
+    let seasons = document.getElementById("filterseasons").value;
+    let genre = document.getElementById("filtergenre").value;
+    let year = document.getElementById("filteryear").value;
+    fetch(`/api/tvshows/searchBy?episodes=${episodes}&seasons=${seasons}&genre=${genre}&year=${year}`, {method: "GET"})
+    .then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+                displayAllInBody(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openFilterForm(){
+    document.getElementById("filterShowForm").style.display = "block";
+}
+
+function closeFilterForm(){
+    document.getElementById("filterShowForm").style.display = "none";
+}
