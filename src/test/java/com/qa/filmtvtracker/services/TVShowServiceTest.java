@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.qa.filmtvtracker.config.AppConfig;
 import com.qa.filmtvtracker.entities.TVShow;
 import com.qa.filmtvtracker.entities.TVShowDTO;
+import com.qa.filmtvtracker.exceptions.TVShowNotFoundException;
 import com.qa.filmtvtracker.repo.TVShowRepo;
 
 @SpringBootTest(classes= {TVShowService.class, TVShowRepo.class, AppConfig.class})
@@ -127,8 +129,8 @@ public class TVShowServiceTest {
 		TVShow updated = new TVShow(1L, "Gintama", (short) 2006, (short) 2021, "Comedy/Action/Sci-Fi", 367, 4);
 		Mockito.when(repo.findById(id)).thenReturn(op);
 		Mockito.when(repo.save(updated)).thenReturn(updated);
-		TVShow response = service.updateShow(id, updated);
-		assertEquals(updated, response);
+		//TVShow response = service.updateShow(id, updated);
+		assertEquals(updated, service.updateShow(id, updated));
 		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
 		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
 	}
@@ -140,5 +142,13 @@ public class TVShowServiceTest {
 		assertTrue(service.removeShow(id));
 		Mockito.verify(this.repo, Mockito.times(2)).existsById(id);
 		Mockito.verify(this.repo, Mockito.times(1)).deleteById(id);
+	}
+	
+	@Test
+	public void testDeleteNotFound() {
+		Long id = 1L;
+		Mockito.when(repo.existsById(id)).thenReturn(false);
+		Exception thrown = Assertions.assertThrows(TVShowNotFoundException.class, ()->{service.removeShow(id);});
+		Mockito.verify(this.repo, Mockito.times(1)).existsById(id);
 	}
 }

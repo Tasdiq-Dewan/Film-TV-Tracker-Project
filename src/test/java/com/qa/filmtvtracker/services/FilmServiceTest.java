@@ -80,7 +80,7 @@ public class FilmServiceTest {
 	}
 	
 	@Test
-	public void deleteIllID() {
+	public void testDeleteNotFound() {
 		Long id = 1L;
 		
 		Mockito.when(repo.existsById(id)).thenReturn(false);
