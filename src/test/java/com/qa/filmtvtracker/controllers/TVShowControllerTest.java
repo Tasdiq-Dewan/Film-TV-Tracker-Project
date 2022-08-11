@@ -23,13 +23,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.filmtvtracker.entities.Film;
 import com.qa.filmtvtracker.entities.FilmDTO;
+import com.qa.filmtvtracker.entities.TVShow;
+import com.qa.filmtvtracker.entities.TVShowDTO;
 import com.qa.filmtvtracker.main.FilmTvTrackerProjectApplication;
 
-@SpringBootTest(classes= {FilmTvTrackerProjectApplication.class, FilmController.class})
+@SpringBootTest(classes= {FilmTvTrackerProjectApplication.class, TVShowController.class})
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
-public class FilmControllerTest {
+public class TVShowControllerTest {
 
 	@Autowired
 	MockMvc mock;
@@ -40,36 +42,27 @@ public class FilmControllerTest {
 	@Autowired
 	private ObjectMapper jsonifier;
 	
-	private FilmDTO mapToDTO(Film film) {
-		return mapper.map(film, FilmDTO.class);
+	private TVShowDTO mapToDTO(TVShow show) {
+		return mapper.map(show, TVShowDTO.class);
 	}
 	
 	private final Long TEST_ID1 = 1L;
-	private final Film TEST_FILM1 = new Film(1L, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", (short) 2001, "Fantasy", 208);
+	private final TVShow TEST_SHOW1 = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
 	
 	private final Long TEST_ID2 = 2L;
-	private final Film TEST_FILM2 = new Film(2L, "The Godfather", "Francis Ford Coppola", (short) 1972, "Mafia", 175);
+	private final TVShow TEST_SHOW2 = new TVShow(2L, "Gintama", (short) 2006, (short) 2021, "Comedy/Action", 367, 4);
 	
-	private final Long TEST_ID3  = 3L;
-	private final Film TEST_FILM3 = new Film(3L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
-	
-	private final Long TEST_CREATEID  = 3L;
-	private final Film TEST_CREATEFILM = new Film(null, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
-	
-//	@BeforeEach
-//	public void dbWipe(){
-//		
-//	}
+	private final Long TEST_ID3 = 3L;
+	private final TVShow TEST_SHOW3 = new TVShow(null, "Cowboy Bebop", (short) 1998, (short) 1998, "Sci-Fi", 26, 1);
 	
 	@Test
 	public void testCreate() {
-		Film expected = TEST_CREATEFILM;
-		expected.setFilmId(TEST_CREATEID);
+		TVShow expected = TEST_SHOW3;
+		expected.setShowId(TEST_ID3);
 		try {
 
-			mock.perform(post("/api/films/add").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
-					.content(this.jsonifier.writeValueAsString(TEST_CREATEFILM)))
-
+			mock.perform(post("/api/tvshows/add").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+					.content(this.jsonifier.writeValueAsString(TEST_SHOW3)))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDTO(expected))));
 
@@ -80,10 +73,10 @@ public class FilmControllerTest {
 	
 	@Test
 	public void testGetAll() {
-		List<FilmDTO> expected = List.of(mapToDTO(TEST_FILM1), mapToDTO(TEST_FILM2));
+		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1), mapToDTO(TEST_SHOW2));
 		try {
 
-			mock.perform(get("/api/films/getAll").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/getAll").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -93,12 +86,11 @@ public class FilmControllerTest {
 	}
 	
 	@Test
-	public void testGetFilm() {
-		FilmDTO expected = mapToDTO(TEST_FILM1);
-		
+	public void testGet() {
+		TVShowDTO expected = mapToDTO(TEST_SHOW1);
 		try {
 
-			mock.perform(get("/api/films/getFilm/"+TEST_ID1).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/getShow/"+TEST_ID1).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -109,11 +101,11 @@ public class FilmControllerTest {
 	
 	@Test
 	public void testSearchName() {
-		List<FilmDTO> expected = List.of(mapToDTO(TEST_FILM2));
-		String name = TEST_FILM2.getFilmName();
+		String name = TEST_SHOW1.getShowName();
+		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
 		try {
 
-			mock.perform(get("/api/films/search/"+name).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/search/"+name).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -123,12 +115,12 @@ public class FilmControllerTest {
 	}
 	
 	@Test
-	public void testSearchByDirector() {
-		List<FilmDTO> expected = List.of(mapToDTO(TEST_FILM2));
-		String director = TEST_FILM2.getDirector();
+	public void testSearchEpisodes() {
+		int episodes = TEST_SHOW1.getEpisodes();
+		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
 		try {
 
-			mock.perform(get("/api/films/searchBy?director="+director+"&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/searchBy?episodes="+episodes+"&seasons0=&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -138,12 +130,27 @@ public class FilmControllerTest {
 	}
 	
 	@Test
-	public void testSearchByGenre() {
-		List<FilmDTO> expected = List.of(mapToDTO(TEST_FILM2));
-		String genre = TEST_FILM2.getGenre();
+	public void testSearchSeasons() {
+		int seasons = TEST_SHOW1.getSeasons();
+		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
 		try {
 
-			mock.perform(get("/api/films/searchBy?director=&genre="+genre+"&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons="+seasons+"&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSearchGenre() {
+		String genre = TEST_SHOW1.getGenre();
+		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
+		try {
+
+			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons=0&genre=0"+genre+"&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -154,11 +161,11 @@ public class FilmControllerTest {
 	
 	@Test
 	public void testSearchByYear() {
-		List<FilmDTO> expected = List.of(mapToDTO(TEST_FILM2));
-		short year = TEST_FILM2.getYearRelease();
+		short year = TEST_SHOW1.getYearBegan();
+		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
 		try {
 
-			mock.perform(get("/api/films/searchBy?director=&genre=&year="+year).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons=0&genre=&year="+year).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -169,42 +176,10 @@ public class FilmControllerTest {
 	
 	@Test
 	public void testSearchByEmpty() {
-		List<FilmDTO> expected = List.of();
+		List<TVShowDTO> expected = List.of();
 		try {
 
-			mock.perform(get("/api/films/searchBy?director=&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
-					.andExpect(status().isOk())
-					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void testUpdate() {
-		Film updated = TEST_FILM1;
-		Long id = TEST_ID1;
-		try {
-
-			mock.perform(put("/api/films/updateFilm/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
-					.content(this.jsonifier.writeValueAsString(updated)))
-
-					.andExpect(status().isOk())
-					.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDTO(updated))));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void testDelete() {
-		Long id = TEST_ID2;
-		boolean expected = true;
-		try {
-
-			mock.perform(delete("/api/films/delete/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons=0&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
