@@ -120,7 +120,7 @@ public class TVShowControllerTest {
 		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
 		try {
 
-			mock.perform(get("/api/tvshows/searchBy?episodes="+episodes+"&seasons0=&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/searchBy?episodes="+episodes+"&seasons=0&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -150,7 +150,7 @@ public class TVShowControllerTest {
 		List<TVShowDTO> expected = List.of(mapToDTO(TEST_SHOW1));
 		try {
 
-			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons=0&genre=0"+genre+"&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons=0&genre="+genre+"&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
@@ -180,6 +180,36 @@ public class TVShowControllerTest {
 		try {
 
 			mock.perform(get("/api/tvshows/searchBy?episodes=0&seasons=0&genre=&year=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testUpdate() {
+		TVShow updated = TEST_SHOW1;
+		Long id = TEST_ID1;
+		try {
+
+			mock.perform(put("/api/tvshows/updateShow/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+					.content(this.jsonifier.writeValueAsString(updated)))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(updated)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testDelete() {
+		Long id = TEST_ID2;
+		boolean expected = true;
+		try {
+			mock.perform(delete("/api/tvshows/delete/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 					.andExpect(status().isOk())
 					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
 
