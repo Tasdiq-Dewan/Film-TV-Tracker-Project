@@ -174,4 +174,108 @@ public class SeleniumFilmsTest {
 	    }
 	    driver.findElement(By.xpath("//*[@id=\"addFilmForm\"]/form/button[1]")).click();
 	  }
+	
+	@Test
+	  public void testUpdateFilmButton() {
+	    driver.get("http://localhost:8090/films.html");
+	    driver.manage().window().setSize(new Dimension(1552, 840));
+	    driver.findElement(By.cssSelector("main > button:nth-child(4)")).click();
+	    {
+	      List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"updateFilmForm\"]"));
+	      assert(elements.size() > 0);
+	    }
+	    driver.findElement(By.id("upfilmId")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("upfilmId"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("upfilmId")).sendKeys("2");
+	    {
+	      String value = driver.findElement(By.id("upfilmId")).getAttribute("value");
+	      assertEquals(value, "2");
+	    }
+	    driver.findElement(By.id("upname")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("upname"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("upname")).sendKeys("The Godfather");
+	    {
+	      String value = driver.findElement(By.id("upname")).getAttribute("value");
+	      assertEquals(value, "The Godfather");
+	    }
+	    driver.findElement(By.id("updirector")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("updirector"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("updirector")).sendKeys("Francis Ford Coppola");
+	    {
+	      String value = driver.findElement(By.id("updirector")).getAttribute("value");
+	      assertEquals(value, "Francis Ford Coppola");
+	    }
+	    driver.findElement(By.id("upyear")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("upyear"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("upyear")).sendKeys("1972");
+	    {
+	      String value = driver.findElement(By.id("upyear")).getAttribute("value");
+	      assertEquals(value, "1972");
+	    }
+	    driver.findElement(By.id("upgenre")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("upgenre"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("upgenre")).sendKeys("Mafia/Crime");
+	    {
+	      String value = driver.findElement(By.id("upgenre")).getAttribute("value");
+	      assertEquals(value, "Mafia/Crime");
+	    }
+	    driver.findElement(By.id("upruntime")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("upruntime"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("upruntime")).sendKeys("175");
+	    {
+	      String value = driver.findElement(By.id("upruntime")).getAttribute("value");
+	      assertEquals(value, "175");
+	    }
+	    driver.findElement(By.cssSelector(".btn:nth-child(14)")).click();
+	  }
+	
+	@Test
+	  public void testDeleteFilmButton() {
+	    driver.get("http://localhost:8090/films.html");
+	    {
+	      List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"film-table-body\"]/tr[2]"));
+	      assert(elements.size() > 0);
+	    }
+	    driver.findElement(By.cssSelector("main > button:nth-child(6)")).click();
+	    driver.findElement(By.id("delfilmId")).click();
+	    {
+	      WebElement element = driver.findElement(By.id("delfilmId"));
+	      Boolean isEditable = element.isEnabled() && element.getAttribute("readonly") == null;
+	      assertTrue(isEditable);
+	    }
+	    driver.findElement(By.id("delfilmId")).sendKeys("2");
+	    {
+	      String value = driver.findElement(By.id("delfilmId")).getAttribute("value");
+	      assertEquals(value, "2");
+	    }
+	    driver.findElement(By.cssSelector("#deleteFilmForm .btn:nth-child(4)")).click();
+	    {
+	      List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"film-table-body\"]/tr[2]"));
+	      assert(elements.size() == 0);
+	    }
+	  }
 }
