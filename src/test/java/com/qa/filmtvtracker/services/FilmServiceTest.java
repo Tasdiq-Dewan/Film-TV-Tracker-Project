@@ -1,6 +1,7 @@
 package com.qa.filmtvtracker.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +72,9 @@ public class FilmServiceTest {
 	public void delete() {
 		Long id = 1L;
 		Mockito.when(repo.existsById(id)).thenReturn(true, false);
-		boolean expected = true;
-		boolean response = service.removeFilm(id);
-		assertEquals(expected, response);
+//		boolean expected = true;
+//		boolean response = service.removeFilm(id);
+		assertTrue(service.removeFilm(id));
 		Mockito.verify(this.repo, Mockito.times(2)).existsById(id);
 		Mockito.verify(this.repo, Mockito.times(1)).deleteById(id);
 	}

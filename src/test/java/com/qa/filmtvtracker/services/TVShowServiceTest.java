@@ -1,6 +1,7 @@
 package com.qa.filmtvtracker.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -104,5 +105,40 @@ public class TVShowServiceTest {
 		Mockito.when(repo.findTVShowByEpisodes(episodes)).thenReturn(list);
 		assertEquals(expected, service.searchShowsByEpisodes(episodes));
 		Mockito.verify(this.repo, Mockito.times(1)).findTVShowByEpisodes(episodes);
+	}
+	
+	@Test
+	public void testSearchSeasons() {
+		int seasons = 4;
+		TVShow show = new TVShow(1L, "Gintama", (short) 2006, (short) 2021, "Comedy/Action", 367, 4);
+		List<TVShow> list = List.of(show);
+		TVShowDTO showdto = new TVShowDTO(1L, "Gintama", (short) 2006, (short) 2021, "Comedy/Action", 367, 4);
+		List<TVShowDTO> expected = List.of(showdto);
+		Mockito.when(repo.findTVShowBySeasons(seasons)).thenReturn(list);
+		assertEquals(expected, service.searchShowsBySeasons(seasons));
+		Mockito.verify(this.repo, Mockito.times(1)).findTVShowBySeasons(seasons);
+	}
+	
+	@Test
+	public void testUpdate() {
+		TVShow show = new TVShow(1L, "Gintama", (short) 2006, (short) 2021, "Comedy/Action", 367, 4);
+		Optional<TVShow> op = Optional.of(show);
+		Long id = 1L;
+		TVShow updated = new TVShow(1L, "Gintama", (short) 2006, (short) 2021, "Comedy/Action/Sci-Fi", 367, 4);
+		Mockito.when(repo.findById(id)).thenReturn(op);
+		Mockito.when(repo.save(updated)).thenReturn(updated);
+		TVShow response = service.updateShow(id, updated);
+		assertEquals(updated, response);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
+	}
+	
+	@Test 
+	public void testDelete() {
+		Long id = 1L;
+		Mockito.when(repo.existsById(id)).thenReturn(true, false);
+		assertTrue(service.removeShow(id));
+		Mockito.verify(this.repo, Mockito.times(2)).existsById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(id);
 	}
 }
