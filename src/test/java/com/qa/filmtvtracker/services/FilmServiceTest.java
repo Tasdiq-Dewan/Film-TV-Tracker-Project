@@ -86,4 +86,18 @@ public class FilmServiceTest {
 		Exception thrown = Assertions.assertThrows(FilmNotFoundException.class, ()->{service.removeFilm(id);});
 		Mockito.verify(this.repo, Mockito.times(1)).existsById(id);
 	}
+	
+	@Test
+	public void testSearchName() {
+		String name = "Batman";
+		Film film = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<Film> list = List.of(film);
+		FilmDTO filmdto = new FilmDTO(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<FilmDTO> expected = List.of(filmdto);
+		
+		Mockito.when(repo.findFilmByFilmName(name)).thenReturn(list);
+		assertEquals(expected, service.searchFilmsByName(name));
+		Mockito.verify(this.repo, Mockito.times(1)).findFilmByFilmName(name);
+		
+	}
 }
