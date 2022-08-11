@@ -41,4 +41,56 @@ public class TVShowRepoTest {
 		List<TVShow> expected = List.of(show1, show2);
 		assertEquals(expected, repo.findAll());
 	}
+	
+	@Test
+	public void testExists() {
+		Long id = 1L;
+		assertTrue(repo.existsById(id));
+	}
+	
+	@Test
+	public void testSave() {
+		TVShow show = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
+		assertEquals(show, repo.save(show));
+	}
+	
+	@Test
+	public void testFindName() {
+		String name = "Breaking Bad";
+		TVShow show = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
+		List<TVShow> expected = List.of(show);
+		assertEquals(expected, repo.findTVShowByShowName(name));
+	}
+	
+	@Test
+	public void testFindEpisodes() {
+		int episodes = 62;
+		TVShow show = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
+		List<TVShow> expected = List.of(show);
+		assertEquals(expected, repo.findTVShowByEpisodes(episodes));
+	}
+	
+	@Test
+	public void testFindSeasons() {
+		int seasons = 5;
+		TVShow show = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
+		List<TVShow> expected = List.of(show);
+		assertEquals(expected, repo.findTVShowBySeasons(seasons));
+	}
+	
+	@Test
+	public void testFindYear() {
+		short year = 2008;
+		TVShow show = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
+		List<TVShow> expected = List.of(show);
+		assertEquals(expected, repo.findTVShowByYearBegan(year));
+	}
+	
+	@Test
+	public void testFindGenre() {
+		String genre = "Drama";
+		TVShow show = new TVShow(1L, "Breaking Bad", (short) 2008, (short) 2013, "Drama", 62, 5);
+		List<TVShow> expected = List.of(show);
+		assertEquals(expected, repo.findTVShowByGenre(genre));
+	}
 }
