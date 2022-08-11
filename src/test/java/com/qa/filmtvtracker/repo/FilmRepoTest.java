@@ -1,6 +1,7 @@
 package com.qa.filmtvtracker.repo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +47,43 @@ public class FilmRepoTest {
 	public void testSave() {
 		Film film = new Film(1L, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", (short) 2001, "Fantasy", 208);
 		assertEquals(film, repo.save(film));
+	}
+	
+	@Test
+	public void testFindName() {
+		String name = "The Lord of the Rings: The Fellowship of the Ring";
+		Film film = new Film(1L, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", (short) 2001, "Fantasy", 208);
+		List<Film> expected = List.of(film);
+		assertEquals(expected, repo.findFilmByFilmName(name));
+	}
+	
+	@Test
+	public void testFindDirector() {
+		String director = "Peter Jackson";
+		Film film = new Film(1L, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", (short) 2001, "Fantasy", 208);
+		List<Film> expected = List.of(film);
+		assertEquals(expected, repo.findFilmByDirector(director));
+	}
+	
+	@Test
+	public void testFindYear() {
+		short year = 2001;
+		Film film = new Film(1L, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", (short) 2001, "Fantasy", 208);
+		List<Film> expected = List.of(film);
+		assertEquals(expected, repo.findFilmByYearRelease(year));
+	}
+	
+	@Test
+	public void testFindGenre() {
+		String genre = "Fantasy";
+		Film film = new Film(1L, "The Lord of the Rings: The Fellowship of the Ring", "Peter Jackson", (short) 2001, "Fantasy", 208);
+		List<Film> expected = List.of(film);
+		assertEquals(expected, repo.findFilmByGenre(genre));
+	}
+	
+	@Test
+	public void testExists() {
+		Long id = 1L;
+		assertTrue(repo.existsById(id));
 	}
 }
