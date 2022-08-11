@@ -60,10 +60,10 @@ public class FilmServiceTest {
 		FilmDTO filmdto = new FilmDTO(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
 		List<FilmDTO> expected = new ArrayList<FilmDTO>();
 		expected.add(filmdto);
-		List<FilmDTO> output = service.getAllFilms();
+		//List<FilmDTO> output = service.getAllFilms();
 		
 		Mockito.when(repo.findAll()).thenReturn(list);
-		assertEquals(output, expected);
+		assertEquals(expected, service.getAllFilms());
 		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 
@@ -125,5 +125,31 @@ public class FilmServiceTest {
 		Mockito.when(repo.findFilmByDirector(director)).thenReturn(list);
 		assertEquals(expected, service.searchFilmsByDirector(director));
 		Mockito.verify(this.repo, Mockito.times(1)).findFilmByDirector(director);
+	}
+	
+	@Test
+	public void testSearchYear() {
+		short year = 1989;
+		Film film = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<Film> list = List.of(film);
+		FilmDTO filmdto = new FilmDTO(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<FilmDTO> expected = List.of(filmdto);
+		
+		Mockito.when(repo.findFilmByYearRelease(year)).thenReturn(list);
+		assertEquals(expected, service.searchFilmsByYear(year));
+		Mockito.verify(this.repo, Mockito.times(1)).findFilmByYearRelease(year);
+	}
+	
+	@Test
+	public void testSearchGenre() {
+		String genre = "Superhero";
+		Film film = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<Film> list = List.of(film);
+		FilmDTO filmdto = new FilmDTO(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<FilmDTO> expected = List.of(filmdto);
+		
+		Mockito.when(repo.findFilmByGenre(genre)).thenReturn(list);
+		assertEquals(expected, service.searchFilmsByGenre(genre));
+		Mockito.verify(this.repo, Mockito.times(1)).findFilmByGenre(genre);
 	}
 }
