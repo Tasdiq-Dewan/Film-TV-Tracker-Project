@@ -119,3 +119,82 @@ function openUpdateForm() {
 function closeUpdateForm() {
     document.getElementById("updateEntryForm").style.display = "none";
 }
+
+function deleteEntry(){
+    let id = document.getElementById("delId").value;
+    
+    fetch(`/api/list/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+    ).then(res => {
+        res.json().then(body => {
+                //data = JSON.stringify(body);
+                console.log(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openDeleteForm() {
+    document.getElementById("deleteEntryForm").style.display = "block";
+}
+  
+function closeDeleteForm() {
+    document.getElementById("deleteEntryForm").style.display = "none";
+}
+
+function searchEntry(){
+    let name = document.getElementById("searchname").value;
+    fetch(`/api/list/search/${name}`, {method: "GET"})
+    .then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+                displayAllInBody(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openSearchForm() {
+    document.getElementById("searchEntryForm").style.display = "block";
+}
+  
+function closeSearchForm() {
+    document.getElementById("searchEntryForm").style.display = "none";
+}
+
+function filterWatchList(){
+    let status = document.getElementById("filterstatus").value;
+    let genre = document.getElementById("filtergenre").value;
+    let rating = document.getElementById("filterrating").value;
+    fetch(`/api/list/searchBy?status=${status}&genre=${genre}&rating=${rating}`, {method: "GET"})
+    .then(res => {
+        res.json().then(body => {
+                data = JSON.stringify(body);
+                console.log(data);
+                displayAllInBody(body);
+           });
+        })
+    .catch(err =>{
+        console.log(err);
+        document.body.innerHTML= `<p>Error: ${err.message}</p>`;
+    })
+}
+
+function openFilterForm() {
+    document.getElementById("filterListForm").style.display = "block";
+}
+  
+function closeFilterForm() {
+    document.getElementById("filterListForm").style.display = "none";
+}
