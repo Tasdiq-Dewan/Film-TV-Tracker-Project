@@ -88,6 +88,19 @@ public class FilmServiceTest {
 	}
 	
 	@Test
+	public void testUpdate() {
+		Film film = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		Film updated = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero/Action", 126);
+		Optional<Film> op = Optional.of(film);
+		Long id = 1L;
+		Mockito.when(repo.findById(id)).thenReturn(op);
+		Mockito.when(repo.save(updated)).thenReturn(updated);
+		assertEquals(updated, service.updateFilm(id, updated));
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
+	}
+	
+	@Test
 	public void testSearchName() {
 		String name = "Batman";
 		Film film = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
@@ -99,5 +112,18 @@ public class FilmServiceTest {
 		assertEquals(expected, service.searchFilmsByName(name));
 		Mockito.verify(this.repo, Mockito.times(1)).findFilmByFilmName(name);
 		
+	}
+	
+	@Test
+	public void testSearchDirector() {
+		String director = "Tim Burton";
+		Film film = new Film(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<Film> list = List.of(film);
+		FilmDTO filmdto = new FilmDTO(1L, "Batman", "Tim Burton", (short) 1989, "Superhero", 126);
+		List<FilmDTO> expected = List.of(filmdto);
+		
+		Mockito.when(repo.findFilmByDirector(director)).thenReturn(list);
+		assertEquals(expected, service.searchFilmsByDirector(director));
+		Mockito.verify(this.repo, Mockito.times(1)).findFilmByDirector(director);
 	}
 }
