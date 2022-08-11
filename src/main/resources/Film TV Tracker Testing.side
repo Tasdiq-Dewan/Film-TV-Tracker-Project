@@ -930,6 +930,412 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "1a856f90-e8c9-40af-8289-d178995606ee",
+    "name": "Test Search Film Button",
+    "commands": [{
+      "id": "fdf8ab4c-6ac7-47d6-9b80-1050b5b8ea0e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8090/films.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d9e13b0-cc82-46d8-8c7b-58e636f69086",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d8a7208-2208-45d6-bcd5-7d1bd601cbed",
+      "comment": "",
+      "command": "click",
+      "target": "css=main > button:nth-child(8)",
+      "targets": [
+        ["css=main > button:nth-child(8)", "css:finder"],
+        ["xpath=(//button[@type='button'])[7]", "xpath:attributes"],
+        ["xpath=//button[4]", "xpath:position"],
+        ["xpath=//button[contains(.,'Search Film')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b9a7c4e-e51f-4ab6-8d0d-61b2c2f049f3",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchname",
+      "targets": [
+        ["id=searchname", "id"],
+        ["name=searchname", "name"],
+        ["css=#searchname", "css:finder"],
+        ["xpath=//input[@id='searchname']", "xpath:attributes"],
+        ["xpath=//div[@id='searchFilmForm']/form/input", "xpath:idRelative"],
+        ["xpath=//div[4]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec280642-a6eb-4af0-bb79-a27cd92a4b7c",
+      "comment": "",
+      "command": "assertEditable",
+      "target": "id=searchname",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "115d7ca0-c987-46a5-b5c2-3657cddb66ca",
+      "comment": "",
+      "command": "type",
+      "target": "id=searchname",
+      "targets": [
+        ["id=searchname", "id"],
+        ["name=searchname", "name"],
+        ["css=#searchname", "css:finder"],
+        ["xpath=//input[@id='searchname']", "xpath:attributes"],
+        ["xpath=//div[@id='searchFilmForm']/form/input", "xpath:idRelative"],
+        ["xpath=//div[4]/form/input", "xpath:position"]
+      ],
+      "value": "The Godfather"
+    }, {
+      "id": "203e8e3e-99ab-4933-8773-a1d7a81070d5",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=searchname",
+      "targets": [],
+      "value": "The Godfather"
+    }, {
+      "id": "bcec5d47-7cb0-4fa5-abdf-ddb095b2d1cc",
+      "comment": "",
+      "command": "click",
+      "target": "css=#searchFilmForm .btn:nth-child(4)",
+      "targets": [
+        ["css=#searchFilmForm .btn:nth-child(4)", "css:finder"],
+        ["xpath=(//button[@type='button'])[8]", "xpath:attributes"],
+        ["xpath=//div[@id='searchFilmForm']/form/button", "xpath:idRelative"],
+        ["xpath=//div[4]/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search for Film')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "67ed387c-9266-4d51-8481-8f9e23720b7a",
+      "comment": "",
+      "command": "click",
+      "target": "css=#searchFilmForm .cancel",
+      "targets": [
+        ["css=#searchFilmForm .cancel", "css:finder"],
+        ["xpath=(//button[@type='button'])[9]", "xpath:attributes"],
+        ["xpath=//div[@id='searchFilmForm']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/form/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "acce179f-681d-4bdb-a44c-f00cab655f57",
+    "name": "Test Filter Films Button",
+    "commands": [{
+      "id": "ebb7f71b-4047-45c5-b499-7d7b312b370c",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8090/films.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3faff9f2-2647-4bfd-a356-ae0c55792ea0",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(10)",
+      "targets": [
+        ["css=button:nth-child(10)", "css:finder"],
+        ["xpath=(//button[@type='button'])[10]", "xpath:attributes"],
+        ["xpath=//button[5]", "xpath:position"],
+        ["xpath=//button[contains(.,'Filter Films')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "31c4318f-5b96-43ff-abcc-2eefab6ab3f8",
+      "comment": "",
+      "command": "click",
+      "target": "id=filterdirector",
+      "targets": [
+        ["id=filterdirector", "id"],
+        ["name=filterdirector", "name"],
+        ["css=#filterdirector", "css:finder"],
+        ["xpath=//input[@id='filterdirector']", "xpath:attributes"],
+        ["xpath=//div[@id='filterFilmForm']/form/input", "xpath:idRelative"],
+        ["xpath=//div[5]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "69e697f2-ffe3-4fc5-b67c-74b65a047efe",
+      "comment": "",
+      "command": "assertEditable",
+      "target": "id=filterdirector",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "57269109-37f0-400e-b933-fd6c09dfe9e7",
+      "comment": "",
+      "command": "type",
+      "target": "id=filterdirector",
+      "targets": [
+        ["id=filterdirector", "id"],
+        ["name=filterdirector", "name"],
+        ["css=#filterdirector", "css:finder"],
+        ["xpath=//input[@id='filterdirector']", "xpath:attributes"],
+        ["xpath=//div[@id='filterFilmForm']/form/input", "xpath:idRelative"],
+        ["xpath=//div[5]/form/input", "xpath:position"]
+      ],
+      "value": "Peter Jackson"
+    }, {
+      "id": "378163bd-959e-4096-bb05-af6e79dadd71",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=filterdirector",
+      "targets": [],
+      "value": "Peter Jackson"
+    }, {
+      "id": "0f57e724-aa3e-497a-9a5d-284fcbd09870",
+      "comment": "",
+      "command": "click",
+      "target": "id=filtergenre",
+      "targets": [
+        ["id=filtergenre", "id"],
+        ["name=filtergenre", "name"],
+        ["css=#filtergenre", "css:finder"],
+        ["xpath=//input[@id='filtergenre']", "xpath:attributes"],
+        ["xpath=//div[@id='filterFilmForm']/form/input[2]", "xpath:idRelative"],
+        ["xpath=//div[5]/form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "358d5a8c-0385-4e48-996a-7885d3f43db7",
+      "comment": "",
+      "command": "assertEditable",
+      "target": "id=filtergenre",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a7eee908-b172-4bdd-a5f2-80ef91b8db12",
+      "comment": "",
+      "command": "click",
+      "target": "id=filteryear",
+      "targets": [
+        ["id=filteryear", "id"],
+        ["name=filteryear", "name"],
+        ["css=#filteryear", "css:finder"],
+        ["xpath=//input[@id='filteryear']", "xpath:attributes"],
+        ["xpath=//div[@id='filterFilmForm']/form/input[3]", "xpath:idRelative"],
+        ["xpath=//div[5]/form/input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c01f5dfb-c4d6-4f90-9cd7-f4d30e0e54b5",
+      "comment": "",
+      "command": "assertEditable",
+      "target": "id=filteryear",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "333ad9b0-b758-42f7-93cc-826c5dea7cb0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(8)",
+      "targets": [
+        ["css=.btn:nth-child(8)", "css:finder"],
+        ["xpath=(//button[@type='button'])[11]", "xpath:attributes"],
+        ["xpath=//div[@id='filterFilmForm']/form/button", "xpath:idRelative"],
+        ["xpath=//div[5]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "917b7829-0779-4736-9431-2b009dee12bc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(9)",
+      "targets": [
+        ["css=.btn:nth-child(9)", "css:finder"],
+        ["xpath=(//button[@type='button'])[12]", "xpath:attributes"],
+        ["xpath=//div[@id='filterFilmForm']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//div[5]/form/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "1bacf745-fef5-46c3-9912-c902d4e0f0fa",
+    "name": "Test Add Film to List Button",
+    "commands": [{
+      "id": "aeb711ff-4344-4ddd-ab2c-448c20ed4feb",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8090/films.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "314fc7b0-774d-429b-9ed5-17e652bd50de",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "66a96628-0307-4c5a-95e8-aedc00e1570a",
+      "comment": "",
+      "command": "click",
+      "target": "css=main > button:nth-child(12)",
+      "targets": [
+        ["css=main > button:nth-child(12)", "css:finder"],
+        ["xpath=(//button[@type='button'])[13]", "xpath:attributes"],
+        ["xpath=//button[6]", "xpath:position"],
+        ["xpath=//button[contains(.,'Add Film to My List')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d77ec0c-bce8-4a3d-bc0c-e61de7516a6d",
+      "comment": "",
+      "command": "click",
+      "target": "id=listfilmId",
+      "targets": [
+        ["id=listfilmId", "id"],
+        ["css=#listfilmId", "css:finder"],
+        ["xpath=//input[@id='listfilmId']", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/input", "xpath:idRelative"],
+        ["xpath=//div[6]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b98a09b4-164e-4ba7-8b56-36ae7787f07b",
+      "comment": "",
+      "command": "assertEditable",
+      "target": "id=listfilmId",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "208b8325-13d5-4ba9-b3f5-f54b59a089ae",
+      "comment": "",
+      "command": "type",
+      "target": "id=listfilmId",
+      "targets": [
+        ["id=listfilmId", "id"],
+        ["css=#listfilmId", "css:finder"],
+        ["xpath=//input[@id='listfilmId']", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/input", "xpath:idRelative"],
+        ["xpath=//div[6]/form/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "0e7192f3-d4e3-47fb-9ce6-79853876f6d6",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=listfilmId",
+      "targets": [],
+      "value": "2"
+    }, {
+      "id": "50845dee-e711-443c-8acf-950597c0c233",
+      "comment": "",
+      "command": "click",
+      "target": "id=listfilmstatus",
+      "targets": [
+        ["id=listfilmstatus", "id"],
+        ["name=listfilmstatus", "name"],
+        ["css=#listfilmstatus", "css:finder"],
+        ["xpath=//select[@id='listfilmstatus']", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25c71fa3-2ff9-4470-a099-b9a1ebb50c4a",
+      "comment": "",
+      "command": "select",
+      "target": "id=listfilmstatus",
+      "targets": [],
+      "value": "label=Complete"
+    }, {
+      "id": "bb08495b-1390-44f5-b65d-b458739a2a8b",
+      "comment": "",
+      "command": "assertSelectedValue",
+      "target": "id=listfilmstatus",
+      "targets": [],
+      "value": "Complete"
+    }, {
+      "id": "bf9d5c0c-759d-4755-b9fd-767f10f42af3",
+      "comment": "",
+      "command": "click",
+      "target": "id=listfilmstatus",
+      "targets": [
+        ["id=listfilmstatus", "id"],
+        ["name=listfilmstatus", "name"],
+        ["css=#listfilmstatus", "css:finder"],
+        ["xpath=//select[@id='listfilmstatus']", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e908c20-b9a9-4709-8c86-3bb15b8a04a1",
+      "comment": "",
+      "command": "select",
+      "target": "id=listfilmstatus",
+      "targets": [],
+      "value": "label=Watching"
+    }, {
+      "id": "6c1f2fc0-babb-499b-ae79-6ffc2c5d5d6b",
+      "comment": "",
+      "command": "assertSelectedValue",
+      "target": "id=listfilmstatus",
+      "targets": [],
+      "value": "Watching"
+    }, {
+      "id": "b34e4c5d-c5d8-4735-96ca-812e6d038966",
+      "comment": "",
+      "command": "click",
+      "target": "id=listfilmstatus",
+      "targets": [
+        ["id=listfilmstatus", "id"],
+        ["name=listfilmstatus", "name"],
+        ["css=#listfilmstatus", "css:finder"],
+        ["xpath=//select[@id='listfilmstatus']", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33de61b0-9228-4632-8009-dd2ea9b4e2c9",
+      "comment": "",
+      "command": "select",
+      "target": "id=listfilmstatus",
+      "targets": [],
+      "value": "label=Planning"
+    }, {
+      "id": "454746e2-dfe9-45bb-bb68-7880479b826f",
+      "comment": "",
+      "command": "assertSelectedValue",
+      "target": "id=listfilmstatus",
+      "targets": [],
+      "value": "Planning"
+    }, {
+      "id": "0a1fa846-3e24-4e35-ab7d-90606da7a649",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(6)",
+      "targets": [
+        ["css=.btn:nth-child(6)", "css:finder"],
+        ["xpath=(//button[@type='button'])[14]", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/button", "xpath:idRelative"],
+        ["xpath=//div[6]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b587ee5-cc33-4a10-a060-dd0d41c466bc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(7)",
+      "targets": [
+        ["css=.btn:nth-child(7)", "css:finder"],
+        ["xpath=(//button[@type='button'])[15]", "xpath:attributes"],
+        ["xpath=//div[@id='addListForm']/form/button[2]", "xpath:idRelative"],
+        ["xpath=//div[6]/form/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "bb45e6bd-2109-4b8d-971c-f6921d3dd855",
