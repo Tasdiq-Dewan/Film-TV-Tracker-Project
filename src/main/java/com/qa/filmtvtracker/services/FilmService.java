@@ -26,7 +26,7 @@ public class FilmService {
 		this.mapper = mapper;
 	}
 	
-	private FilmDTO mapToDTO(Film film) {
+	public FilmDTO mapToDTO(Film film) {
 		return mapper.map(film, FilmDTO.class);
 	}
 	

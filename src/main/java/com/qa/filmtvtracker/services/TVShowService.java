@@ -26,7 +26,7 @@ public class TVShowService {
 		this.mapper = mapper;
 	}
 	
-	private TVShowDTO mapToDTO(TVShow show) {
+	public TVShowDTO mapToDTO(TVShow show) {
 		return mapper.map(show, TVShowDTO.class);
 	}
 	
@@ -70,7 +70,7 @@ public class TVShowService {
 		toSave.setEpisodes(show.getEpisodes());
 		toSave.setSeasons(show.getSeasons());
 		toSave.setYearBegan(show.getYearBegan());
-		toSave.setYearEnded(show.getYearBegan());
+		toSave.setYearEnded(show.getYearEnded());
 		return this.repo.save(toSave);
 	}
 	
