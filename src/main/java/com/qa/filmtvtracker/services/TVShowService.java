@@ -26,7 +26,7 @@ public class TVShowService {
 		this.mapper = mapper;
 	}
 	
-	private TVShowDTO mapToDTO(TVShow show) {
+	public TVShowDTO mapToDTO(TVShow show) {
 		return mapper.map(show, TVShowDTO.class);
 	}
 	
