@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film & TV Tracker</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="shows.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body onload="showAllTVShows()">
+    <header class="d-flex justify-content-center">
+        <a href="index.html"><h1>Tasdiq's Film & TV Show Tracker</h1></a>
+    </header>
+    <header class="d-flex justify-content-center">
+        <nav class="navbar">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="films.html" class="nav-link">Films</a>
+                </li>
+                <li class="nav-item">
+                    <a href="shows.html" class="nav-link">TV Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a href="mylist.html" class="nav-link">My Watch List</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>TV Shows</h2>
+        <button type="button" onclick="openAddForm()">
+            Add TV Show
+        </button>
+        <div id="addShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Add TV Show</h2>
+                <label for="showName"><b>TV Show Name</b></label>
+                <input type="text" id="name" placeholder="Enter TV Show Name" name="showName" required>
+                <label for="yearBegan"><b>Year Began</b></label>
+                <input type="text" id="yearBegan" placeholder="Enter Year Began" name="yearBegan" required>
+                <label for="yearEnded"><b>Year Ended</b></label>
+                <input type="text" id="yearEnded" placeholder="Enter Year Ended" name="yearEnded">
+                <label for="genre"><b>Genre</b></label>
+                <input type="text" id="genre" placeholder="Enter Genre" name="genre" required>
+                <label for="episodes"><b>Episodes</b></label>
+                <input type="text" id="episodes" placeholder="Enter Episodes" name="episodes" required>
+                <label for="seasons"><b>Seasons</b></label>
+                <input type="text" id="seasons" placeholder="Enter Seasons" name="seasons" required>
+                <button type="submit" class="btn" onclick="create()">Add TV Show</button>
+                <button type="button" class="btn cancel" onclick="closeAddForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openUpdateForm()">
+            Update TV Show
+        </button>
+        <div id="updateShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2> Update TV Show</h2>
+                <label for="upshowId"><b>TV Show ID</b></label>
+                <input type="text" id="upshowId" placeholder="Enter TV Show ID" name="upshowId" required>
+                <label for="upshowName"><b>TV Show Name</b></label>
+                <input type="text" id="upname" placeholder="Enter TV Show Name" name="upshowName" required>
+                <label for="upyearBegan"><b>Year Began</b></label>
+                <input type="text" id="upyearBegan" placeholder="Enter Year Began" name="upyearBegan" required>
+                <label for="upyearEnded"><b>Year Ended</b></label>
+                <input type="text" id="upyearEnded" placeholder="Enter Year Ended" name="upyearEnded">
+                <label for="upgenre"><b>Genre</b></label>
+                <input type="text" id="upgenre" placeholder="Enter Genre" name="upgenre" required>
+                <label for="upepisodes"><b>Episodes</b></label>
+                <input type="text" id="upepisodes" placeholder="Enter Episodes" name="upepisodes" required>
+                <label for="upseasons"><b>Seasons</b></label>
+                <input type="text" id="upseasons" placeholder="Enter Seasons" name="upseasons" required>
+                <button type="submit" class="btn" onclick="updateShow()">Update TV Show</button>
+                <button type="button" class="btn cancel" onclick="closeUpdateForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openDeleteForm()">
+            Delete TV Show
+        </button>
+        <div id="deleteShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2> Delete TV Show</h2>
+                <label for="delshowId"><b>TV Show ID</b></label>
+                <input type="text" id="delshowId" placeholder="Enter TV Show ID" name="delshowId" required>
+                
+                <button type="submit" class="btn" onclick="deleteShow()">Delete TV Show</button>
+                <button type="button" class="btn cancel" onclick="closeDeleteForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openSearchForm()">
+            Search TV Show
+        </button>
+        <div id="searchShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2> Search TV Show</h2>
+                <label for="searchname"><b>TV Show Name</b></label>
+                <input type="text" id="searchname" placeholder="Enter TV Show Name" name="searchname" required>
+                <button type="button" class="btn" onclick="searchShow()">Search TV Show</button>
+                <button type="button" class="btn cancel" onclick="closeSearchForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openFilterForm()">
+            Filter TV Shows
+        </button>
+        <div id="filterShowForm" class="form-popup">
+            <form  class="form-container">
+                <h2> Filter TV Shows</h2>
+                <label for="filterepisodes"><b>Episodes</b></label>
+                <input type="text" id="filterepisodes" placeholder="Enter Episodes" name="filterepisodes" value="0">
+                <label for="filterseasons"><b>Seasons</b></label>
+                <input type="text" name="filterseasns" id="filterseasons" placeholder="Enter Seasons" value="0">
+                <label for="filtergenre"><b>Genre</b></label>
+                <input type="text" id="filtergenre" name="filtergenre" placeholder="Enter Genre">
+                <label for="filteryear"><b>Year Began</b></label>
+                <input type="text" name="filteryear" id="filteryear" placeholder="Enter Year Began" value="0">
+                <button type="button" class="btn" onclick="filterShows()">Filter TV Shows</button>
+                <button type="button" class="btn cancel" onclick="closeFilterForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openAddListForm()">
+            Add Show to My List
+        </button>
+        <div id="addListForm" class="form-popup">
+            <form class="form-container">
+                <h2>Add Show to List</h2>
+                <label for="addListId"><b>TV Show ID</b></label>
+                <input type="text" id="addListId" name="addListId" placeholder="Enter Show ID" required>
+                <label for="status"><b>Status</b></label>
+                <select name="status" id="status" class="form-dropdown" required>
+                    <option value="Complete">Complete</option>
+                    <option value="Watching">Watching</option>
+                    <option value="Planning">Planning</option>
+                </select>
+                <label for="progress"><b>Progress</b></label>
+                <input type="text" name="progress" id="progress" placeholder="Enter Progress" value="0" required>
+                <button type="button" class="btn" onclick="addShowToList()">Add TV Show to List</button>
+                <button type="button" class="btn cancel" onclick="closeAddListForm()">Close</button>
+            </form>
+        </div>
+        <table id="show-table" class="table table-dark table-striped table-hover">
+            <thead id="show-table-head">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Year Began</th>
+                    <th scope="col">Year Ended</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Episodes</th>
+                    <th scope="col">Seasons</th>
+                </tr>
+            </thead>
+            <tbody id="show-table-body">
+                
+            </tbody>
+        </table>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+</body>
+</html>
