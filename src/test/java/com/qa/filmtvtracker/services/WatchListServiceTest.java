@@ -50,6 +50,16 @@ public class WatchListServiceTest {
 	}
 	
 	@Test
+	public void testGetEntry() {
+		Long id = 1L;
+		Optional<WatchList> op = Optional.of(ENTRY1);
+		WatchListDTO expected = new WatchListDTO(1L, FILM, null, "The Lord of the Rings: The Fellowship of the Ring", "Complete", 1 , 1, "Fantasy", 10);
+		Mockito.when(this.repo.findById(id)).thenReturn(op);
+		assertEquals(expected, service.getEntry(id));
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+	}
+	
+	@Test
 	public void testAddFilm() {
 		Film film = FILM;
 		WatchList create = ENTRY1;
@@ -74,5 +84,16 @@ public class WatchListServiceTest {
 		Mockito.when(this.repo.save(create)).thenReturn(create);
 		assertEquals(create, service.addShowEntry(show, status, progress));
 		Mockito.verify(this.repo, Mockito.times(1)).save(create);
+	}
+	
+	@Test
+	public void testSearchName() {
+		String name = ENTRY1.getName();
+		List<WatchList> list = List.of(ENTRY1);
+		WatchListDTO dto = new WatchListDTO(1L, FILM, null, "The Lord of the Rings: The Fellowship of the Ring", "Complete", 1 , 1, "Fantasy", 10);
+		List<WatchListDTO> expected = List.of(dto);
+		Mockito.when(repo.findWatchListByName(name)).thenReturn(list);
+		assertEquals(expected, service.searchEntryByName(name));
+		Mockito.verify(this.repo, Mockito.times(1)).findWatchListByName(name);
 	}
 }
