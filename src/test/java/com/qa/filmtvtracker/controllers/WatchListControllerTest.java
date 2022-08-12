@@ -85,6 +85,107 @@ public class WatchListControllerTest {
 	
 	@Test
 	public void testSearchByName() {
+		String name = ENTRY2.getName();
+		List<WatchListDTO> expected = List.of(mapToDTO(ENTRY2));
+		try {
+
+			mock.perform(get("/api/list/search/"+name).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSearchByStatus() {
+		String status = ENTRY2.getStatus();
+		List<WatchListDTO> expected = List.of(mapToDTO(ENTRY2));
+		try {
+
+			mock.perform(get("/api/list/searchBy?status="+status+"&genre=&rating=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSearchByGenre() {
+		String genre = ENTRY2.getGenre();
+		List<WatchListDTO> expected = List.of(mapToDTO(ENTRY2));
+		try {
+
+			mock.perform(get("/api/list/searchBy?status=&genre="+genre+"&rating=0").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSearchByRating() {
+		int rating = 10;
+		List<WatchListDTO> expected = List.of(mapToDTO(ENTRY1), mapToDTO(ENTRY2));
+		try {
+
+			mock.perform(get("/api/list/searchBy?status=&genre=&rating="+rating).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testSearchByEmpty() {
 		
+		List<WatchListDTO> expected = List.of();
+		try {
+
+			mock.perform(get("/api/list/searchBy?status=&genre=&rating=-1").accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testUpdate() {
+		Long id = 1L;
+		WatchList update = ENTRY1;
+		try {
+
+			mock.perform(put("/api/list/update/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
+					.content(this.jsonifier.writeValueAsString(update)))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(update)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testDelete() {
+		Long id = 1L;
+		boolean expected = true;
+		try {
+
+			mock.perform(delete("/api/list/delete/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
+					.andExpect(status().isOk())
+					.andExpect(content().json(this.jsonifier.writeValueAsString(expected)));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

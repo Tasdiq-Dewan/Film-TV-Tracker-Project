@@ -189,9 +189,8 @@ public class FilmControllerTest {
 
 			mock.perform(put("/api/films/updateFilm/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON)
 					.content(this.jsonifier.writeValueAsString(updated)))
-
 					.andExpect(status().isOk())
-					.andExpect(content().json(this.jsonifier.writeValueAsString(this.mapToDTO(updated))));
+					.andExpect(content().json(this.jsonifier.writeValueAsString(updated)));
 
 		} catch (Exception e) {
 			e.printStackTrace();
