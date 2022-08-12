@@ -32,3 +32,22 @@ The terminal within Eclipse should show this
 
 ![image](https://user-images.githubusercontent.com/37335919/184318539-48c543db-29f9-4f12-9942-9575b61d05fe.png)
 
+## Using the Film & TV Tracker Website
+
+After starting the springboot app in Eclipse, on your web browser go to localhost:8081/index.html. This is the page you should see.
+
+![image](https://user-images.githubusercontent.com/37335919/184319155-97a18acf-edbc-4675-8adb-51764f87eebd.png)
+
+### Films page
+
+On the navigation bar click on "Films" to go to the Films page
+
+Upon loading the page it will automatically display all films stored in the database
+
+![image](https://user-images.githubusercontent.com/37335919/184319627-6956b914-26f0-4de4-9cae-184ddaab9dfb.png)
+
+Click on Add Film to bring up a pop up form to submit information on the new film you'd like to add.
+
+![image](https://user-images.githubusercontent.com/37335919/184319806-aa895950-0594-4f4c-945a-bc1003e95783.png)
+
+
