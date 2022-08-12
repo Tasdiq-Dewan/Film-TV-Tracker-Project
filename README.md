@@ -128,6 +128,30 @@ Click on Filter Watch List to filter your list by status, genre, or rating.
 
 ### Setup
 
-In Eclipse, open application.properties and change profile to test.
+In Eclipse, in src/main/resources open application.properties and change profile to test. 
+
+All tests are within src/test/java.
 
 ### Unit Test
+
+There are two packages with unit tests, com.qa.filmtvtracker.repo and  com.qa.filmtvtracker.services.
+
+Select them and Coverage As -> JUnit test.
+
+![image](https://user-images.githubusercontent.com/37335919/184330515-9fc684a7-2096-4156-82b6-7907fe8ad4ae.png)
+
+### Integration Test
+
+There are integration tests for the controller in the com.qa.filmtvtracker.controllers package.
+
+Select the package and Coverage As -> JUnit Test
+
+![image](https://user-images.githubusercontent.com/37335919/184331752-2c34b512-a52a-435a-882f-673dd3000eae.png)
+
+### Selenium Test
+
+In the com.qa.filmtvtracker.main package there is a test called SeleniumFilmsTest.java that tests the Films page on the website.
+
+First run filmtvtracker as a spring boot app. Then select SeleniumFilmsTest.java and Run As -> JUnit Test
+![image](https://user-images.githubusercontent.com/37335919/184333094-33f09eaa-a9ae-4ce7-a8cb-83dee2ba16d7.png)
+
