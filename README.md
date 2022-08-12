@@ -47,19 +47,25 @@ Upon loading the page it will automatically display all films stored in the data
 ![image](https://user-images.githubusercontent.com/37335919/184319627-6956b914-26f0-4de4-9cae-184ddaab9dfb.png)
 
 Click on Add Film to bring up a pop up form to submit information on the new film you'd like to add.
+
 ![image](https://user-images.githubusercontent.com/37335919/184319806-aa895950-0594-4f4c-945a-bc1003e95783.png)
 
 Click on Update Film to bring up a pop up form and provide a Film ID and attribute values for the film you'd like to update
+
 ![image](https://user-images.githubusercontent.com/37335919/184320854-022d58e5-848a-4df9-884e-e3a340240d6c.png)
 
 Click on Delete Film to provide the ID of the Film you want to delete.
+
 ![image](https://user-images.githubusercontent.com/37335919/184320992-22e77f39-565f-47cd-ba1a-8ae4cb83a9f4.png)
 
 Click on Search Film to search for films by name. 
+
 ![image](https://user-images.githubusercontent.com/37335919/184321128-4bcf1486-338e-48c5-b5a4-68167d531318.png)
 
 Click on Filter Films to filter films by director, genre, or year of release.
+
 ![image](https://user-images.githubusercontent.com/37335919/184321345-3f852d13-b7a3-4089-8aac-efb4745aa053.png)
 
 Click on Add Film to My List to provide a Film ID and status (Complete, Watching, Planning) of the film you want to add to your list.
+
 ![image](https://user-images.githubusercontent.com/37335919/184321516-06120e75-97ec-4dc3-b9dd-3dd69a208363.png)
