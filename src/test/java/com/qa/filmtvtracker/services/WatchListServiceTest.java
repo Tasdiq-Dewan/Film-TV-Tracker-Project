@@ -21,6 +21,7 @@ import com.qa.filmtvtracker.entities.TVShow;
 import com.qa.filmtvtracker.entities.WatchList;
 import com.qa.filmtvtracker.entities.WatchListDTO;
 import com.qa.filmtvtracker.exceptions.FilmNotFoundException;
+import com.qa.filmtvtracker.exceptions.WatchListNotFoundException;
 import com.qa.filmtvtracker.repo.WatchListRepo;
 
 @SpringBootTest(classes = {WatchListService.class, WatchListRepo.class, AppConfig.class})
@@ -128,5 +129,35 @@ public class WatchListServiceTest {
 		Mockito.when(repo.findWatchListByRating(rating)).thenReturn(list);
 		assertEquals(expected, service.searchEntryByRating(rating));
 		Mockito.verify(this.repo, Mockito.times(1)).findWatchListByRating(rating);
+	}
+	
+	@Test
+	public void testUpdate() {
+		Long id = 2L;
+		WatchList update = ENTRY2;
+		Optional<WatchList> op = Optional.of(update);
+		Mockito.when(repo.findById(id)).thenReturn(op);
+		Mockito.when(repo.save(update)).thenReturn(update);
+		assertEquals(update, service.updateEntry(id, update));
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(update);
+	}
+	
+	@Test
+	public void testDelete() {
+		Long id = 2L;
+		Mockito.when(repo.existsById(id)).thenReturn(true, false);
+		assertTrue(service.removeEntry(id));
+		Mockito.verify(this.repo, Mockito.times(2)).existsById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(id);
+	}
+	
+	@Test
+	public void testDeleteNotFound() {
+		Long id = 1L;
+		
+		Mockito.when(repo.existsById(id)).thenReturn(false);
+		Exception thrown = Assertions.assertThrows(WatchListNotFoundException.class, ()->{service.removeEntry(id);});
+		Mockito.verify(this.repo, Mockito.times(1)).existsById(id);
 	}
 }
