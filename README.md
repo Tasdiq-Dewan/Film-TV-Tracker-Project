@@ -123,3 +123,11 @@ Click on Search Watch List to search for an entry on your watch list by name.
 Click on Filter Watch List to filter your list by status, genre, or rating.
 
 ![image](https://user-images.githubusercontent.com/37335919/184325219-35982421-2486-47fe-b6f6-29ad80498012.png)
+
+## Testing
+
+### Setup
+
+In Eclipse, open application.properties and change profile to test.
+
+### Unit Test
