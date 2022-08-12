@@ -206,7 +206,7 @@ public class TVShowControllerTest {
 	
 	@Test
 	public void testDelete() {
-		Long id = TEST_ID2;
+		Long id = TEST_ID1;
 		boolean expected = true;
 		try {
 			mock.perform(delete("/api/tvshows/delete/"+id).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
