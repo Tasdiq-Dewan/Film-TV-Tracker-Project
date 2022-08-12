@@ -55,5 +55,38 @@ public class WatchListRepoTest {
 		WatchList expected = ENTRY1;
 		assertEquals(expected, this.repo.save(ENTRY1));
 	}
+	
+	@Test
+	public void testExists() {
+		Long id = 1L;
+		assertTrue(this.repo.existsById(id));
+	}
+	
+	@Test
+	public void testFindByName() {
+		String name = ENTRY1.getName();
+		List<WatchList> expected = List.of(ENTRY1);
+		assertEquals(expected, this.repo.findWatchListByName(name));
+	}
+	
+	@Test
+	public void testFindByGenre() {
+		String genre = ENTRY2.getGenre();
+		List<WatchList> expected = List.of(ENTRY2);
+		assertEquals(expected, this.repo.findWatchListByGenre(genre));
+	}
 
+	@Test
+	public void testFindByStatus() {
+		String status = ENTRY1.getStatus();
+		List<WatchList> expected = List.of(ENTRY1);
+		assertEquals(expected, this.repo.findWatchListByStatus(status));
+	}
+	
+	@Test
+	public void testFindByRating() {
+		int rating = 10;
+		List<WatchList> expected = List.of(ENTRY1, ENTRY2);
+		assertEquals(expected, this.repo.findWatchListByRating(rating));
+	}
 }
