@@ -148,7 +148,7 @@ There are integration tests for the controller in the com.qa.filmtvtracker.contr
 
 Select the package and Coverage As -> JUnit Test
 
-![image](https://user-images.githubusercontent.com/37335919/184331752-2c34b512-a52a-435a-882f-673dd3000eae.png)
+![image](https://user-images.githubusercontent.com/37335919/184374702-ff32c308-926d-4a78-969d-deef1faf9880.png)
 
 ### Selenium Test
 
