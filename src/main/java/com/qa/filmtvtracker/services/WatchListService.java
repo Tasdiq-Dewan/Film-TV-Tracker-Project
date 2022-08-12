@@ -44,6 +44,7 @@ public class WatchListService {
 	}
 	
 	public WatchList addFilmEntry(Film film, String status, int progress) {
+		//WatchList entry = new WatchList(null, film, null, film.getFilmName(), status, 1, progress, film.getGenre(), 0);
 		WatchList entry = new WatchList();
 		
 		entry.setFilm(film);
