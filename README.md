@@ -15,26 +15,29 @@ These instructions will get you a copy of the project up and running on your loc
 
 Have the latest [Java SE Development Kit version 17 installed.](https://www.oracle.com/java/technologies/downloads/#java17)
 
+Have the latest [MySQL Community Server version 8 installed including MySQL Workbench.](https://dev.mysql.com/downloads/windows/installer/8.0.html)
+
 Have the latest [Apache Maven version installed.](https://maven.apache.org/download.cgi)
 
 ### Installing
 
 Step 1: Clone the repository to your local device.
 
+Step 2: Open src/main/resources/filmtvtracker.sql in MySQL Workbench and run it to set it up as a local mysql database.
 
 #### Editing and Running in Eclipse
 
-Open Film-TV-Tracker-Project in Eclipse as a Springboot project. Ensure the Java Build Path is set to JavaSE-17. Open application.properties and set profile to dev.
+Open Film-TV-Tracker-Project in Eclipse as a Springboot project. Ensure the Java Build Path is set to JavaSE-17. Open application.properties and set profile to prod.
 
 In Eclipse click Run As -> Spring Boot App
 
 The terminal within Eclipse should show this
 
-![image](https://user-images.githubusercontent.com/37335919/184318539-48c543db-29f9-4f12-9942-9575b61d05fe.png)
+![image](https://user-images.githubusercontent.com/37335919/184391611-510c87c9-aad0-411d-aa4a-b7ee86f4d24c.png)
 
 ## Using the Film & TV Tracker Website
 
-After starting the springboot app in Eclipse, on your web browser go to localhost:8081/index.html. This is the page you should see.
+After starting the springboot app in Eclipse, on your web browser go to localhost:8080/index.html. This is the page you should see.
 
 ![image](https://user-images.githubusercontent.com/37335919/184319155-97a18acf-edbc-4675-8adb-51764f87eebd.png)
 
