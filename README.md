@@ -138,7 +138,9 @@ There are two packages with unit tests, com.qa.filmtvtracker.repo and  com.qa.fi
 
 Select them and Coverage As -> JUnit test.
 
-![image](https://user-images.githubusercontent.com/37335919/184330515-9fc684a7-2096-4156-82b6-7907fe8ad4ae.png)
+![image](https://user-images.githubusercontent.com/37335919/184361950-e1cf180f-00c3-487f-baf5-85e1726be83c.png)
+
+![image](https://user-images.githubusercontent.com/37335919/184362275-f1b5f600-3a72-4974-b6a1-b6224949ce9b.png)
 
 ### Integration Test
 
