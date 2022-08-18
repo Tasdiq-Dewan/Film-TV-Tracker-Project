@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-@SpringBootTest
+@SpringBootTest(classes = FilmTvTrackerProjectApplication.class)
 public class SeleniumFilmsTest {
 
 	private static WebDriver driver;

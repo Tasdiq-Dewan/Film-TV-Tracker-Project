@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film & TV Tracker</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script type="text/javascript" src="films.js"></script>
+</head>
+<body onload="showAllFilms()">
+    <header class="d-flex justify-content-center">
+        <a href="index.html"><h1>Tasdiq's Film & TV Show Tracker</h1></a>
+    </header>
+    <header class="d-flex justify-content-center">
+        <nav class="navbar">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="films.html" class="nav-link">Films</a>
+                </li>
+                <li class="nav-item">
+                    <a href="shows.html" class="nav-link">TV Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a href="mylist.html" class="nav-link">My Watch List</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Films</h2>
+        <button type="button" onclick="openAddForm()">
+            Add Film
+        </button>
+        <div id="addFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Add Film</h2>
+                <label for="filmName"><b>Film Name</b></label>
+                <input type="text" id="name" placeholder="Enter Film Name" name="filmName" required>
+                <label for="director"><b>Director</b></label>
+                <input type="text" id="director" placeholder="Enter Director" name="director" required>
+                <label for="year"><b>Year of Release</b></label>
+                <input type="text" id="year" placeholder="Enter Year of Release" name="year" required>
+                <label for="genre"><b>Genre</b></label>
+                <input type="text" id="genre" placeholder="Enter Genre" name="genre" required>
+                <label for="runtime"><b>Runtime</b></label>
+                <input type="text" id="runtime" placeholder="Enter Runtime" name="runtime" required>
+                <button type="submit" class="btn" onclick="create()">Add Film</button>
+                <button type="button" class="btn cancel" onclick="closeAddForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openUpdateForm()">
+            Update Film
+        </button>
+        <div id="updateFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Update Film</h2>
+                <label for="upfilmId"><b>Film ID</b></label>
+                <input type="text" id="upfilmId" placeholder="Enter Film ID" name="upfilmId" required>
+                <label for="filmName"><b>Film Name</b></label>
+                <input type="text" id="upname" placeholder="Enter Film Name" name="upfilmName" required>
+                <label for="updirector"><b>Director</b></label>
+                <input type="text" id="updirector" placeholder="Enter Director" name="updirector" required>
+                <label for="upyear"><b>Year of Release</b></label>
+                <input type="text" id="upyear" placeholder="Enter Year of Release" name="upyear" required>
+                <label for="upgenre"><b>Genre</b></label>
+                <input type="text" id="upgenre" placeholder="Enter Genre" name="upgenre" required>
+                <label for="upruntime"><b>Runtime</b></label>
+                <input type="text" id="upruntime" placeholder="Enter Runtime" name="upruntime" required>
+                <button type="submit" class="btn" onclick="update()">Update Film</button>
+                <button type="button" class="btn cancel" onclick="closeUpdateForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openDeleteForm()">
+            Delete Film
+        </button>
+        <div id="deleteFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Delete Film</h2>
+                <label for="delfilmId"><b>Film ID</b></label>
+                <input type="text" id="delfilmId" placeholder="Enter Film ID" name="delfilmId" required>
+                
+                <button type="submit" class="btn" onclick="deleteFilm()">Delete Film</button>
+                <button type="button" class="btn cancel" onclick="closeDeleteForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openSearchForm()">
+            Search Film
+        </button>
+        <div id="searchFilmForm" class="form-popup">
+            <form class="form-container">
+                <h2>Search Film</h2>
+                <label for="searchname"><b>Film ID</b></label>
+                <input type="text" id="searchname" placeholder="Enter a Film Name" name="searchname" required>
+                
+                <button type="button" class="btn" onclick="searchFilm()">Search for Film</button>
+                <button type="button" class="btn cancel" onclick="closeSearchForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openFilterForm()">
+            Filter Films
+        </button>
+        <div id="filterFilmForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Filter Film</h2>
+                <label for="filterdirector"><b>Filter by Director</b></label>
+                <input type="text" id="filterdirector" placeholder="Enter Director" name="filterdirector">
+                <label for="filtergenre"><b>Filter by Genre</b></label>
+                <input type="text" id="filtergenre" placeholder="Enter Genre" name="filtergenre">
+                <label for="filteryear"><b>Filter by Year of Release</b></label>
+                <input type="text" id="filteryear" placeholder="Enter Year of Release" name="filteryear" value="0">
+                
+                <button type="button" class="btn" onclick="filterFilm()">Filter Films</button>
+                <button type="button" class="btn cancel" onclick="closeFilterForm()">Close</button>
+            </form>
+        </div>
+        <button type="button" onclick="openAddListForm()">
+            Add Film to My List
+        </button>
+        <div id="addListForm" class="form-popup">
+            <form  class="form-container">
+                <h2>Add Film to List</h2>
+                <label for="listfilmId"><b>Film ID</b></label>
+                <input type="text" id="listfilmId" placeholder="Enter Film ID" required>
+                <label for="listfilmstatus"><b>Watch Status</b></label>
+                <select name="listfilmstatus" id="listfilmstatus" class="form-dropdown" required>
+                    <option value="Complete">Complete</option>
+                    <option value="Watching">Watching</option>
+                    <option value="Planning">Planning</option>
+                </select>
+                <button type="button" class="btn" onclick="addFilmToList()">Add Film to My List</button>
+                <button type="button" class="btn cancel" onclick="closeAddListForm()">Close</button>
+            </form>
+        </div>
+        <table id="film-table" class="table table-dark table-striped table-hover">
+            <thead id="film-table-head">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Director</th>
+                    <th scope="col">Year of Release</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Runtime (mins)</th>
+                </tr>
+            </thead>
+            <tbody id="film-table-body">
+                
+            </tbody>
+        </table>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+</body>
+</html>
